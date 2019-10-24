@@ -23,9 +23,6 @@ public class AreaInteresse extends BaseEntity {
 		this.descricao = descricao;
 	}
 
-	public AreaInteresse() {
-	}
-
 	@Override
 	public String toString() {
 		return "AreaInteresse [descricao=" + descricao + ", id=" + id + ", isNew()=" + isNew() + "]";
