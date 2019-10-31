@@ -14,7 +14,6 @@ public class PropostaService {
 	private PropostaRepository proposta;
 
 	public PropostaService(PropostaRepository proposta) {
-		super();
 		this.proposta = proposta;
 	}
 	
@@ -22,7 +21,7 @@ public class PropostaService {
 		try {
 			return this.proposta.findByStudent(aluno);
 		} catch (Exception exception) {
-			new Exception("Erro");
+			throw new ServiceException(exception);
 		}
 	}
 	

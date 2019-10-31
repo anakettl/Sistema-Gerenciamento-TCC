@@ -25,7 +25,7 @@ public class PropostaController {
 			model.addAttribute("proposta", p);
 			return "proposta/show";
 		} catch (Exception exception) {
-			// TODO: handle exception
+			return "/";
 		}
 	}
 }
