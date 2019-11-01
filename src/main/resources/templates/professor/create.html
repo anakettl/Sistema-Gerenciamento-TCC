@@ -8,31 +8,29 @@ th:replace="~{fragments/layout :: layout (~{::body},'professores')}">
 	
   <body>
 
-    <h2>Professor</h2>
+    <h2>Adicionar Professor</h2>
     
     <p>Esta view retorna um formulario para cadastro de professor</p>
     
-	<!-- 
-	<table id="professor" class="table table-striped">
-		<thead>
-		<tr>
-			<th style="width: 150px;">ID</th>
-			<th style="width: 150px;">NAME</th>
-		</tr>
-		</thead>
-		<tbody>
-		<tr th:each="pro : ${professor}">
-			<td>
-				<p th:text="${pro.id}"></p>
-			</td>
-			<td>
-				<p th:text="${pro.name}"></p>
-			</td>
-		</tr>
-		</tbody>
-	</table>
-	
-	 -->
+    <form action="adicionaProfessor" method="post">
+     	Matricula: <br/>
+        <input type="text" name="matricula" /><br/>
+    
+        Nome: <br/>
+        <input type="text" name="nome" /><br/>
+        <br/>
+        Email: <br/>
+        <input type="text" name="email" /><br/>
+       
+        
+        <select name="tipo">
+            <option value="ENTRADA">Entrada</option>
+            <option value="SAIDA">Saída</option>
+        </select>
+        <br/><br/>
+        <input type="submit" value="Adicionar"/>
+    </form>
+
 	
 	
 
