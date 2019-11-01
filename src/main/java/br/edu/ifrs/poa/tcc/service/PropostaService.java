@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.ifrs.poa.tcc.models.Proposta;
-import br.edu.ifrs.poa.tcc.models.Student;
+import br.edu.ifrs.poa.tcc.models.Aluno;
 import br.edu.ifrs.poa.tcc.repositories.PropostaRepository;
 
 @Service
@@ -17,7 +17,7 @@ public class PropostaService {
 		this.proposta = proposta;
 	}
 	
-	public Proposta buscarPropostaPeloAluno(Student aluno) {
+	public Proposta buscarPropostaPeloAluno(Aluno aluno) {
 		try {
 			return this.proposta.findByStudent(aluno);
 		} catch (Exception exception) {

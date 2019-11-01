@@ -1,0 +1,32 @@
+ <!DOCTYPE html>
+
+<html lang="pt" xmlns:th="https://www.thymeleaf.org" 
+th:replace="~{fragments/layout :: layout (~{::body},'alunos')}">
+	<head>
+		<title>Aluno</title>
+	</head>
+	
+  <body>
+
+    <h2>Aluno</h2>
+    
+    <form th:action="@{/alunos/novo}" th:method="post" th:object="${aluno}">
+    	
+    	<input type="hidden" id="id" th:field="id" ></input>
+    	
+    	<label>Nome</label>
+    	<input id="nome" th:field="nome" ></input>
+    	
+    	<label>Nome</label>
+    	<input id="email" th:field="email" ></input>
+    	
+    	<label>Nome</label>
+    	<input id="cpf" th:field="cpf" ></input>
+    	
+    	<button type="submit">Enviar</button>
+    </form>
+    
+	
+  </body>
+
+</html>

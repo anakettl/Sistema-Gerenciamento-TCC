@@ -5,7 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import br.edu.ifrs.poa.tcc.models.Proposta;
-import br.edu.ifrs.poa.tcc.models.Student;
+import br.edu.ifrs.poa.tcc.models.Aluno;
 import br.edu.ifrs.poa.tcc.service.PropostaService;
 
 @Controller
@@ -19,7 +19,7 @@ public class PropostaController {
 	}
 	
 	@GetMapping("/proposta")
-	public String proposta(Proposta proposta, Student aluno, Model model) {
+	public String proposta(Proposta proposta, Aluno aluno, Model model) {
 		try {
 			Proposta p = this.proposta.buscarPropostaPeloAluno(aluno);
 			model.addAttribute("proposta", p);
