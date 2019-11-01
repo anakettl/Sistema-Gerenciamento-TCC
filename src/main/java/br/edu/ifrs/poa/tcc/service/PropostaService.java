@@ -19,7 +19,7 @@ public class PropostaService {
 	
 	public Proposta buscarPropostaPeloAluno(Aluno aluno) {
 		try {
-			return this.proposta.findByStudent(aluno);
+			return this.proposta.findByAutor(aluno);
 		} catch (Exception exception) {
 			throw new ServiceException(exception);
 		}
