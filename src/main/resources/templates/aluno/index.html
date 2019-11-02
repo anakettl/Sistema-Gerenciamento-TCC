@@ -1,0 +1,52 @@
+ <!DOCTYPE html>
+
+<html lang="pt" xmlns:th="https://www.thymeleaf.org" 
+th:replace="~{fragments/layout :: layout (~{::body},'aluno')}">
+	<head>
+		<title>Professor</title>
+		<meta charset="UTF-8">
+	</head>
+	
+  <body>
+
+    <h2>Alunos</h2>
+    
+    <p>Veja a lista de alunos:</p>
+    
+    <a type="button" th:href="@{/alunos/create}">Criar</a>
+    
+
+	<table>
+		<thead>
+		<tr>
+			<th>NOME</th>
+			<th>EMAIL</th>
+			<th>MATRICULA</th>
+			<th>CPF</th>
+			<th>TELEFONE</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each="aluno : ${alunos}">
+			<td>
+				<p th:text="${aluno.nome}"></p>
+			</td>
+			<td>
+				<p th:text="${aluno.email}"></p>
+			</td>
+			<td>
+				<p th:text="${aluno.matricula}"></p>
+			</td>
+			<td>
+				<p th:text="${aluno.cpf}"></p>
+			</td>
+			<td>
+				<p th:text="${aluno.telefone}"></p>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	
+  </body>
+
+</html>

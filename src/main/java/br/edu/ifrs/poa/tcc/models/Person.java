@@ -42,25 +42,7 @@ public class Person implements Serializable {
 	@Column(length = 80, nullable = false)
 	protected String cpf;
 
-	public Person() {
-
-	}
-
-	public Person(Integer id, @NotBlank(message = "Nome obrigatório") String nome,
-			@NotBlank(message = "Email obrigatório") @Email(message = "Email inválido") String email,
-			@NotBlank(message = "Telefone obrigatório") Long telefone,
-			@NotBlank(message = "Matrícula obrigatória") Long matricula,
-			@CPF(message = "CPF invalido") @NotBlank(message = "CPF obrigatório") String cpf) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.email = email;
-		this.telefone = telefone;
-		this.matricula = matricula;
-		this.cpf = cpf;
-	}
-
-	protected Integer getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -114,11 +96,10 @@ public class Person implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", name=" + nome + ", email=" + email + ", telefone=" + telefone + ", matricula="
-				+ matricula + ", cpf=" + cpf + ", getCpf()=" + getCpf() + ", getId()=" + getId() + ", getName()="
-				+ getNome() + ", getEmail()=" + getEmail() + ", getTelefone()=" + getTelefone() + ", getMatricula()="
-				+ getMatricula() + ", isNew()=" + isNew() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+		return "Person [id=" + id + ", nome=" + nome + ", email=" + email + ", telefone=" + telefone + ", matricula="
+				+ matricula + ", cpf=" + cpf + "]";
 	}
+
+	
 	
 }

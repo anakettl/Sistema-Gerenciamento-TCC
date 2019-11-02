@@ -1,5 +1,7 @@
 package br.edu.ifrs.poa.tcc.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -25,7 +27,7 @@ public class AlunoController {
 		this.alunos = alunos;
 	}
 	
-	@GetMapping("/novo")
+	@GetMapping("/create")
 	@Transactional
 	public String viewSalvar(Aluno aluno, Model model) {
 		try {
@@ -37,12 +39,12 @@ public class AlunoController {
 		}
 	}
 	
-	@PostMapping("/novo")
+	@PostMapping("/create")
 	@Transactional
 	public String salvar(@Valid Aluno aluno, BindingResult resultado, RedirectAttributes redirecionamento, Model model) {
 		try {
 			if(resultado.hasErrors()) {
-				return "redirect:/alunos/novo";
+				return "redirect:/alunos/create";
 			}
 			this.alunos.salvar(aluno);
 			redirecionamento.addFlashAttribute("message", "Aluno salvo com sucesso!");
@@ -52,4 +54,17 @@ public class AlunoController {
 			return "/alunos";
 		}
 	}
+	
+	@GetMapping
+	public String todos(Model model) {
+		try {
+			List<Aluno> lista = this.alunos.todos();
+			model.addAttribute("alunos", lista);
+			return "aluno/index";
+		} catch (Exception exception) {
+			model.addAttribute("erro", exception.getMessage());
+			return "error";
+		}
+	}
+	
 }

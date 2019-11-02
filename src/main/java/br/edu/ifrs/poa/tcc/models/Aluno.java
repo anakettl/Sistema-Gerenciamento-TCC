@@ -6,7 +6,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "students") // nome de tabela deve ser o nome da classe no plural em letras minusculas
+@Table(name = "alunos") // nome de tabela deve ser o nome da classe no plural em letras minusculas
 public class Aluno extends Person {
 	private static final long serialVersionUID = 1L;
 
