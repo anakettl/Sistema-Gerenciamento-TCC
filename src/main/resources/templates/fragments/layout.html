@@ -36,13 +36,11 @@
 		    <ul class="navbar-nav">
 		    
 		    	
-	    	<li th:fragment="menuItem (path,active,title,glyph,text)"
+	    	<li th:fragment="menuItem (path,active,title,text)"
 					class="nav-item active" th:class="${active==menu ? 'active' : ''}"><a
 					th:href="@{__${path}__}" th:title="${title}">
 					
-				<span th:class="'glyphicon  glyphicon-'+${glyph}"
-					  aria-hidden="true"></span> <span
-					  th:text="${text}">Template</span>
+					  <span  th:text="${text}">Template</span>
 				</a>
 					
 			</li>
@@ -50,12 +48,12 @@
 		    	
 		      <li class="nav-item">
 		      
-		        	<a class="nav-link" th:replace="::menuItem ('/','home','home page','home','Home')">Home <span class="sr-only">(current)</span></a>
+		        	<a class="nav-link" th:replace="::menuItem ('/','home','HOME','Home')">Home <span class="sr-only">(current)</span></a>
 		        
 		      </li>
 		      <li class="nav-item">
 		      
-		        	<a class="nav-link" th:replace="::menuItem ('/alunos','alunos','aluno','th-list','Alunos')">Alunos</a>
+		        	<a class="nav-link" th:replace="::menuItem ('/alunos','alunos','ALUNO','Alunos')">Alunos</a>
 		        	
 		        	<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 		          		<a class="dropdown-item" href="/alunos/create">Criar</a>
@@ -64,12 +62,12 @@
 		        	</div>
 		        
 		      </li>
-		      <li class="nav-item" th:replace="::menuItem ('/professor','professores','professores','th-list','Professores')">
+		      <li class="nav-item" th:replace="::menuItem ('/professor','professores','PROFESSOR','Professores')">
 		      
 		        	<a class="nav-link">Professores</a>
 		        
 		      </li>
-		      <li class="nav-item dropdown" th:replace="::menuItem ('/bancas','bancas','bancas','th-list','Bancas')">
+		      <li class="nav-item dropdown" th:replace="::menuItem ('/bancas','bancas','BANCA','Bancas')">
 		      
 		        	<a class="nav-link dropdown-toggle" href="/bancas" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		         		Bancas
@@ -82,7 +80,7 @@
 		        </div>
 		        
 		    	</li>
-		    	<li class="nav-item" th:replace="::menuItem ('/propostas','propostas','propostas','th-list','Propostas')">
+		    	<li class="nav-item" th:replace="::menuItem ('/propostas','propostas','PROPOSTA','Propostas')">
 		      
 		        	<a class="nav-link" href="#">Propostas</a>
 		        
