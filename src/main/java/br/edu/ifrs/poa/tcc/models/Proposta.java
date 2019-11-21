@@ -15,7 +15,7 @@ public class Proposta extends BaseEntity {
 	private String titulo;
 	
 	@OneToOne
-	private Student autor;
+	private Aluno autor;
 	
 	@ManyToOne
 	private Teacher orientador;
@@ -24,7 +24,7 @@ public class Proposta extends BaseEntity {
 		
 	}
 	
-	public Proposta(String titulo, Student autor, Teacher orientador) {
+	public Proposta(String titulo, Aluno autor, Teacher orientador) {
 		super();
 		this.titulo = titulo;
 		this.autor = autor;
@@ -39,11 +39,11 @@ public class Proposta extends BaseEntity {
 		this.titulo = titulo;
 	}
 
-	public Student getAutor() {
+	public Aluno getAutor() {
 		return autor;
 	}
 
-	public void setAutor(Student autor) {
+	public void setAutor(Aluno autor) {
 		this.autor = autor;
 	}
 
