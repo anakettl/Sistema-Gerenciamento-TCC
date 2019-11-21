@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "alunos") // nome de tabela deve ser o nome da classe no plural em letras minusculas
-public class Aluno extends Person {
+public class Aluno extends Pessoa {
 	private static final long serialVersionUID = 1L;
 
 	@OneToOne(cascade = CascadeType.ALL)

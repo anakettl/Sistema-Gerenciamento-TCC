@@ -13,7 +13,7 @@ public class Titulacao extends BaseEntity{
 	
 	
 	@OneToMany
-	private List<Teacher> professor;
+	private List<Professor> professor;
 	
 	protected String Graduacao;
 	protected String Especializacao;
@@ -24,7 +24,7 @@ public class Titulacao extends BaseEntity{
 		
 	}
 	
-	public Titulacao(List<Teacher> professor, String graduacao, String especializacao, String mestrado, String doutorado) {
+	public Titulacao(List<Professor> professor, String graduacao, String especializacao, String mestrado, String doutorado) {
 		super();
 		this.professor = professor;
 		Graduacao = graduacao;
@@ -33,10 +33,10 @@ public class Titulacao extends BaseEntity{
 		Doutorado = doutorado;
 	}
 	
-	public List<Teacher> getProfessor() {
+	public List<Professor> getProfessor() {
 		return professor;
 	}
-	public void setProfessor(List<Teacher> professor) {
+	public void setProfessor(List<Professor> professor) {
 		this.professor = professor;
 	}
 	public String getGraduacao() {

@@ -13,7 +13,7 @@ import javax.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.br.CPF;
 
 @MappedSuperclass
-public class Person implements Serializable {
+public class Pessoa implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -96,7 +96,7 @@ public class Person implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", nome=" + nome + ", email=" + email + ", telefone=" + telefone + ", matricula="
+		return "Pessoa [id=" + id + ", nome=" + nome + ", email=" + email + ", telefone=" + telefone + ", matricula="
 				+ matricula + ", cpf=" + cpf + "]";
 	}
 
