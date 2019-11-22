@@ -1,0 +1,35 @@
+ <!DOCTYPE html>
+
+<html lang="pt" xmlns:th="https://www.thymeleaf.org" 
+th:replace="~{fragments/layout :: layout (~{::body},'bancas', )}">
+	<head>
+		<title>Banca</title>
+	</head>
+	
+  <body>
+
+    
+    <h2 th:if="${banca.id} == null" >Novo Banca</h2>
+    
+    <form th:action="@{/banca/create}" th:method="post" th:object="${banca}">
+    	
+    	<input type="hidden" id="id" th:field="*{id}"/>
+    	
+    	<label>Avaliador 01</label>
+    	<input id="avaliador_1" th:field="*{matricula}"/>
+    	
+    	<label>Avaliador 02</label>
+    	<input id="avaliador_2" th:field="*{matricula}"/>
+    	
+    	<label>Orientador</label>
+    	<input id="orientador" th:field="*{matricula}"/>
+    	
+    	
+    	
+    	<button type="submit">Enviar</button>
+    </form>
+    
+	
+  </body>
+
+</html>
