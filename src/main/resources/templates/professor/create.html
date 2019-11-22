@@ -7,6 +7,8 @@ th:replace="~{fragments/layout :: layout (~{::body},'professores')}">
 	</head>
 	
   <body>
+  
+  <div class="container-fluid">
 
     <h2>Adicionar Professor</h2>
     
@@ -22,16 +24,11 @@ th:replace="~{fragments/layout :: layout (~{::body},'professores')}">
         Email: <br/>
         <input type="text" name="email" /><br/>
        
-        
-        <select name="tipo">
-            <option value="ENTRADA">Entrada</option>
-            <option value="SAIDA">Saída</option>
-        </select>
         <br/><br/>
         <input type="submit" value="Adicionar"/>
     </form>
 
-	
+	</div>
 	
 
 
