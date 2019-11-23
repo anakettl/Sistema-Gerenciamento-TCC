@@ -1,5 +1,8 @@
 package br.edu.ifrs.poa.tcc.security;
 
+import br.edu.ifrs.poa.tcc.dto.AutDto;
+import br.edu.ifrs.poa.tcc.models.Categoria;
+import br.edu.ifrs.poa.tcc.models.Professor;
 import br.edu.ifrs.poa.tcc.repositories.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,19 +15,26 @@ import br.edu.ifrs.poa.tcc.repositories.AlunoRepository;;
 
 
 @Service
-public class AuthenticateService implements UserDetailsService{
+public class AuthProviderService implements UserDetailsService{
 	
 	@Autowired
 	AlunoRepository repositoryA;
 
 	@Autowired
-	ProfessorRepository repositoryP
+	ProfessorRepository repositoryP;
 	
 	@Override
 	public UserDetails loadUserByUsername(String user){
-		Object usuario = repositoryA.findByMatricula(Long.parseLong(user));
-		if(!usuario.isNew()){return usuario.}
-		else {throw new UsernameNotFoundException("Dados Inválidos");}
+		AutDto usuario = user;
+		if(usuario.getTipo().equals(Categoria.ALUNO)){
+			Aluno aluno = repositoryA.findByUsername(usuario.getUsername());
+			return  aluno;
+		} else if (usuario.getTipo().equals(Categoria.PROFESSOR)){
+			Professor professor = repositoryP.findByUsername(usuario.getUsername());
+			return professor;
+		}else if (usuario.getTipo().equals(Categoria.ADMIN)){
+
+		} else throw new UsernameNotFoundException("Dados Inválidos");
 	}
 
 }

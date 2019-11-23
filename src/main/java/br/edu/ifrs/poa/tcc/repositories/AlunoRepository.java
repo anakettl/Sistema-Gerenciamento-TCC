@@ -7,6 +7,6 @@ import br.edu.ifrs.poa.tcc.models.Aluno;
 public interface AlunoRepository extends JpaRepository<Aluno, Integer> {
 
 	Aluno findByMatricula(Long matricula);
-	
+	Aluno findByUsername(String username);
 	
 }
