@@ -1,5 +1,6 @@
 package br.edu.ifrs.poa.tcc.security;
 
+import br.edu.ifrs.poa.tcc.repositories.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,11 +15,14 @@ import br.edu.ifrs.poa.tcc.repositories.AlunoRepository;;
 public class AuthenticateService implements UserDetailsService{
 	
 	@Autowired
-	AlunoRepository repository;
+	AlunoRepository repositoryA;
+
+	@Autowired
+	ProfessorRepository repositoryP
 	
 	@Override
 	public UserDetails loadUserByUsername(String user){
-		Aluno usuario = repository.findByMatricula(Long.parseLong(user));
+		Object usuario = repositoryA.findByMatricula(Long.parseLong(user));
 		if(!usuario.isNew()){return usuario.}
 		else {throw new UsernameNotFoundException("Dados Inválidos");}
 	}
