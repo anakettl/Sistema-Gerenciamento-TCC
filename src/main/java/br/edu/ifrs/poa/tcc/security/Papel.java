@@ -6,15 +6,13 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
+import br.edu.ifrs.poa.tcc.models.Roles;
 import org.springframework.security.core.GrantedAuthority;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Papel implements GrantedAuthority {
-
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -22,29 +20,11 @@ public class Papel implements GrantedAuthority {
     private Integer id;
 
     @Enumerated(EnumType.STRING)
-    private Modulo nome;
-
-    @ManyToOne
-    @JsonIgnore
-    private UsuarioLogin usuarioLogin;
+    private Roles nome;
 
     @Override
     public String getAuthority() {
         return nome.toString();
-    }
-
-    public enum Modulo {
-        DASHBOARD("ROLE_DASHBOARD"), USUARIO("ROLE_USUARIO");
-        private String modulo;
-
-        private Modulo(String modulo) {
-            this.modulo = modulo;
-        }
-
-        @Override
-        public String toString() {
-            return this.modulo;
-        }
     }
 
     public Integer getId() {
@@ -55,20 +35,12 @@ public class Papel implements GrantedAuthority {
         this.id = id;
     }
 
-    public Modulo getNome() {
+    public Roles getNome() {
         return nome;
     }
 
-    public void setNome(Modulo nome) {
+    public void setNome(Roles nome) {
         this.nome = nome;
-    }
-
-    public UsuarioLogin getUsuario() {
-        return usuarioLogin;
-    }
-
-    public void setUsuario(UsuarioLogin usuarioLogin) {
-        this.usuarioLogin = usuarioLogin;
     }
 
     @Override

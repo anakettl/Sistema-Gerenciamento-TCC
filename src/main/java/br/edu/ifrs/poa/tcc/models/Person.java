@@ -1,19 +1,19 @@
 package br.edu.ifrs.poa.tcc.models;
 
 import java.io.Serializable;
+import java.util.Collection;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+import br.edu.ifrs.poa.tcc.security.Papel;
 import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @MappedSuperclass
-public class Person implements Serializable {
+public class Person implements Serializable, UserDetails {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -23,6 +23,14 @@ public class Person implements Serializable {
 	@NotBlank(message = "Nome obrigatório")
 	@Column(length = 55, nullable = false)
 	protected String nome;
+
+	@NotBlank(message = "Username obrigatório")
+	@Column(length = 20,unique = true)
+	protected String username;
+
+	@NotBlank(message = "Senha obrigatório")
+	@Column(length = 30)
+	protected String password;
 
 	@NotBlank(message = "Email obrigatório")
 	@Email(message = "Email inválido")
@@ -41,6 +49,9 @@ public class Person implements Serializable {
 	@NotBlank(message = "CPF obrigatório")
 	@Column(length = 80, nullable = false)
 	protected String cpf;
+
+	@ManyToOne
+	protected Collection<Papel> grupos;
 
 	public Integer getId() {
 		return id;
@@ -100,6 +111,47 @@ public class Person implements Serializable {
 				+ matricula + ", cpf=" + cpf + "]";
 	}
 
-	
-	
+
+	@Override
+	public Collection<Papel> getAuthorities() {
+		return grupos;
+	}
+
+	@Override
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	@Override
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return false;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return false;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return false;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
 }
