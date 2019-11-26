@@ -6,7 +6,7 @@ import javax.validation.constraints.NotBlank;
 
 
 @Entity
-@Table(name = "areasInteresse")
+@Table(name = "areas-interesse")
 public class AreaInteresse extends BaseEntity {
 	
 	private static final long serialVersionUID = 1L;

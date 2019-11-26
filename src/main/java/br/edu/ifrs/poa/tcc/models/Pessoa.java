@@ -13,7 +13,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @MappedSuperclass
+<<<<<<< HEAD:src/main/java/br/edu/ifrs/poa/tcc/models/Person.java
 public class Person implements Serializable, UserDetails {
+=======
+public class Pessoa implements Serializable {
+>>>>>>> master:src/main/java/br/edu/ifrs/poa/tcc/models/Pessoa.java
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -107,7 +111,7 @@ public class Person implements Serializable, UserDetails {
 
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", nome=" + nome + ", email=" + email + ", telefone=" + telefone + ", matricula="
+		return "Pessoa [id=" + id + ", nome=" + nome + ", email=" + email + ", telefone=" + telefone + ", matricula="
 				+ matricula + ", cpf=" + cpf + "]";
 	}
 
