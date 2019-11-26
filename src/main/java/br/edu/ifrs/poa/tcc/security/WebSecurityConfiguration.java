@@ -45,4 +45,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .permitAll();
     }
+
+
 }
