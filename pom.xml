@@ -60,6 +60,9 @@
 	<build>
 		<plugins>
 			<plugin>
+				<configuration>
+					<mainClass>br.edu.ifrs.poa.tcc.Application</mainClass>
+				</configuration>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
