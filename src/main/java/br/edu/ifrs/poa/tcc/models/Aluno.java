@@ -13,6 +13,10 @@ public class Aluno extends Pessoa {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Proposta proposta;
 
+	public Aluno() {
+		super();
+	}
+
 	public Proposta getProposta() {
 		return proposta;
 	}
@@ -20,5 +24,13 @@ public class Aluno extends Pessoa {
 	public void setProposta(Proposta proposta) {
 		this.proposta = proposta;
 	}
+
+	@Override
+	public String toString() {
+		return "Aluno [proposta=" + proposta + ", id=" + id + ", nome=" + nome + ", username=" + username
+				+ ", password=" + password + ", email=" + email + ", telefone=" + telefone + ", matricula=" + matricula
+				+ ", cpf=" + cpf + ", isNew()=" + isNew() + "]";
+	}
+	
 
 }
