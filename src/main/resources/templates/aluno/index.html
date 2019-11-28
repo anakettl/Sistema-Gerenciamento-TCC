@@ -13,6 +13,8 @@ th:replace="~{fragments/layout :: layout (~{::body},'aluno')}">
     
     <p>Veja a lista de alunos:</p>
     
+    <div th:if="${mensagem}"></div>
+    
     <a type="button" th:href="@{/alunos/create}">Criar</a>
     
 

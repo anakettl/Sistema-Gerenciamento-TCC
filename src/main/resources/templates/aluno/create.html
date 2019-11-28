@@ -15,6 +15,9 @@ th:replace="~{fragments/layout :: layout (~{::body},'alunos', )}">
     	
     	<input type="hidden" id="id" th:field="*{id}"/>
     	
+    	<label>Matricula</label>
+    	<input id="matricula" th:field="*{matricula}"/>
+    	
     	<label>Nome</label>
     	<input id="nome" th:field="*{nome}"/>
     	
@@ -25,11 +28,15 @@ th:replace="~{fragments/layout :: layout (~{::body},'alunos', )}">
     	<input id="cpf" th:field="*{cpf}"/>
     	
     	<label>Telefone</label>
-    	<input id="telefone" th:field="*{cpf}"/>
+    	<input id="telefone" th:field="*{telefone}"/>
     	
     	<button type="submit">Enviar</button>
+    	
+    	<div th:if="${#fields.hasAnyErrors()}" class="row" id="alert_box">
+           <p th:each="err : ${#fields.allErrors()}" th:text="${err}"></p>
+ 		</div>
+    	
     </form>
-    
 	
   </body>
 

@@ -31,13 +31,12 @@ public class Pessoa implements Serializable {
 	
 	@NotBlank(message = "Telefone obrigatório")
 	@Column(length = 30)
-	protected Long telefone;
+	protected String telefone;
 	
 	@NotBlank(message = "Matrícula obrigatória")
 	@Column(length = 80, nullable = false)
-	protected Long matricula;
+	protected String matricula;
 	
-	@CPF(message = "CPF invalido")
 	@NotBlank(message = "CPF obrigatório")
 	@Column(length = 80, nullable = false)
 	protected String cpf;
@@ -66,11 +65,11 @@ public class Pessoa implements Serializable {
 		this.email = email;
 	}
 	
-	public Long getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(Long telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 	
@@ -82,11 +81,11 @@ public class Pessoa implements Serializable {
 		this.cpf = cpf;
 	}
 	
-	public Long getMatricula() {
+	public String getMatricula() {
 		return matricula;
 	}
 
-	public void setMatricula(Long matricula) {
+	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
 
