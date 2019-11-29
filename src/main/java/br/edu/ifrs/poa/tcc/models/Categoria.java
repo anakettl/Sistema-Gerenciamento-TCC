@@ -6,6 +6,10 @@ public enum Categoria {
     private String t;
 
     Categoria(String t) {
-
+    	this.t = t;
+    }
+    
+    public String getT() {
+    	return this.t;
     }
 }
