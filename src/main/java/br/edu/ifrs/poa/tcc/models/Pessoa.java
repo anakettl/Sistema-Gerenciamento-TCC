@@ -39,13 +39,12 @@ public class Pessoa implements Serializable {
 	
 	@NotBlank(message = "Telefone obrigatório")
 	@Column(length = 30)
-	protected Long telefone;
+	protected String telefone;
 	
 	@NotBlank(message = "Matrícula obrigatória")
 	@Column(length = 80, nullable = false)
-	protected Long matricula;
+	protected String matricula;
 	
-	@CPF(message = "CPF invalido")
 	@NotBlank(message = "CPF obrigatório")
 	@Column(length = 80, nullable = false)
 	protected String cpf;
@@ -57,8 +56,8 @@ public class Pessoa implements Serializable {
 			@NotBlank(message = "Username obrigatório") String username,
 			@NotBlank(message = "Senha obrigatório") String password,
 			@NotBlank(message = "Email obrigatório") @Email(message = "Email inválido") String email,
-			@NotBlank(message = "Telefone obrigatório") Long telefone,
-			@NotBlank(message = "Matrícula obrigatória") Long matricula,
+			@NotBlank(message = "Telefone obrigatório") String telefone,
+			@NotBlank(message = "Matrícula obrigatória") String matricula,
 			@CPF(message = "CPF invalido") @NotBlank(message = "CPF obrigatório") String cpf) {
 		super();
 		this.id = id;
@@ -110,20 +109,21 @@ public class Pessoa implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public Long getTelefone() {
+	
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(Long telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 
-	public Long getMatricula() {
+	
+	public String getMatricula() {
 		return matricula;
 	}
 
-	public void setMatricula(Long matricula) {
+	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
 

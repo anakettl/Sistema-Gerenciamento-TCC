@@ -9,8 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.edu.ifrs.poa.tcc.models.Aluno;
@@ -28,30 +30,31 @@ public class AlunoController {
 	}
 	
 	@GetMapping("/create")
-	@Transactional
-	public String viewSalvar(Aluno aluno, Model model) {
+	public ModelAndView viewSalvar(Aluno aluno) {
+		ModelAndView model = new ModelAndView("aluno/create");
 		try {
-			model.addAttribute("aluno", aluno);
-			return "aluno/create";
+			model.addObject("aluno", aluno);
+			return model;
 		} catch (Exception exception) {
-			model.addAttribute("erro", exception.getMessage());
-			return "/alunos";
+			model.addObject("erro", exception.getMessage());
+			model.setViewName("alunos");
+			return model;
 		}
 	}
 	
 	@PostMapping("/create")
-	@Transactional
-	public String salvar(@Valid Aluno aluno, BindingResult resultado, RedirectAttributes redirecionamento, Model model) {
+	public ModelAndView salvar(@Valid Aluno aluno, BindingResult resultado, RedirectAttributes redirecionamento) {
+		ModelAndView model = new ModelAndView("redirect:/alunos");
 		try {
 			if(resultado.hasErrors()) {
-				return "redirect:/alunos/create";
+				return viewSalvar(aluno);
 			}
 			this.alunos.salvar(aluno);
 			redirecionamento.addFlashAttribute("message", "Aluno salvo com sucesso!");
-			return "redirect:/alunos";
+			return model;
 		} catch (Exception exception) {
-			model.addAttribute("erro", exception.getMessage());
-			return "/alunos";
+			model.addObject("erro", exception.getMessage());
+			return model;
 		}
 	}
 	
@@ -66,5 +69,20 @@ public class AlunoController {
 			return "error";
 		}
 	}
+	
+	@GetMapping("{id}")
+	public ModelAndView ver(@PathVariable("id") Integer id) {
+		ModelAndView model = new ModelAndView("aluno/create");
+		try {
+			Aluno aluno = this.alunos.aluno(id);
+			model.addObject("aluno", aluno);
+			return model;
+		} catch (Exception exception) {
+			model.addObject("erro", exception.getMessage());
+			model.setViewName("alunos");
+			return model;
+		}
+	}
+	
 	
 }

@@ -18,8 +18,6 @@ public class Papel implements  GrantedAuthority {
 	
 	private String grupo;
 	
-
-	
 	@Override
 	public String getAuthority() {
 		return this.grupo;

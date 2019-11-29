@@ -30,7 +30,6 @@ public class UsuarioLogado implements UserDetails {
 	private String senha;
 	
 	@ManyToMany
-	@PrimaryKeyJoinColumn
 	private List<Papel> papeis; 
 
 
