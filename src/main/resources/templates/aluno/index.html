@@ -45,6 +45,9 @@ th:replace="~{fragments/layout :: layout (~{::body},'aluno')}">
 			<td>
 				<p th:text="${aluno.telefone}"></p>
 			</td>
+			<td>
+				<a th:href="@{/alunos/__${aluno.id}__}"> Ver</a>
+			</td>
 		</tr>
 		</tbody>
 	</table>

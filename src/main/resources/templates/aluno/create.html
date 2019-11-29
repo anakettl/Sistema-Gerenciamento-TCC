@@ -8,7 +8,7 @@ th:replace="~{fragments/layout :: layout (~{::body},'alunos', )}">
 	
   <body>
 
-    <h2 th:if="${aluno.id} != null" >Aluno</h2>
+    <h2 th:if="${aluno.id} != null" >Dados do Aluno:</h2>
     <h2 th:if="${aluno.id} == null" >Novo Aluno</h2>
     
     <form th:action="@{/alunos/create}" th:method="post" th:object="${aluno}">
@@ -30,7 +30,8 @@ th:replace="~{fragments/layout :: layout (~{::body},'alunos', )}">
     	<label>Telefone</label>
     	<input id="telefone" th:field="*{telefone}"/>
     	
-    	<button type="submit">Enviar</button>
+    	<button th:if="${aluno.id} == null" type="submit">Enviar</button>
+    	<button th:if="${aluno.id} != null" onclick()="atualizar">Atualizar</button>
     	
     	<div th:if="${#fields.hasAnyErrors()}" class="row" id="alert_box">
            <p th:each="err : ${#fields.allErrors()}" th:text="${err}"></p>
