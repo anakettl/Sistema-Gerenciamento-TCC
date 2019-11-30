@@ -12,4 +12,6 @@ public class Professor extends Pessoa{
 	@ManyToOne
 	private Titulacao titulo;
 
+
+
 }

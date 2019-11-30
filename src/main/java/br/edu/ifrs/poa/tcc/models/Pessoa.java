@@ -24,14 +24,6 @@ public class Pessoa implements Serializable {
 	@Column(length = 55, nullable = false)
 	protected String nome;
 
-	@NotBlank(message = "Username obrigatório")
-	@Column(length = 20,unique = true)
-	protected String username;
-
-	@NotBlank(message = "Senha obrigatório")
-	@Column(length = 30)
-	protected String password;
-
 	@NotBlank(message = "Email obrigatório")
 	@Email(message = "Email inválido")
 	@Column(length = 80, nullable = false)
@@ -53,8 +45,6 @@ public class Pessoa implements Serializable {
 		
 	}
 	public Pessoa(Integer id, @NotBlank(message = "Nome obrigatório") String nome,
-			@NotBlank(message = "Username obrigatório") String username,
-			@NotBlank(message = "Senha obrigatório") String password,
 			@NotBlank(message = "Email obrigatório") @Email(message = "Email inválido") String email,
 			@NotBlank(message = "Telefone obrigatório") String telefone,
 			@NotBlank(message = "Matrícula obrigatória") String matricula,
@@ -62,8 +52,6 @@ public class Pessoa implements Serializable {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.username = username;
-		this.password = password;
 		this.email = email;
 		this.telefone = telefone;
 		this.matricula = matricula;
@@ -84,22 +72,6 @@ public class Pessoa implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public String getEmail() {
@@ -141,9 +113,13 @@ public class Pessoa implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Pessoa [id=" + id + ", nome=" + nome + ", username=" + username + ", password=" + password + ", email="
-				+ email + ", telefone=" + telefone + ", matricula=" + matricula + ", cpf=" + cpf + ", isNew()="
-				+ isNew() + "]";
+		return "Pessoa{" +
+				"id=" + id +
+				", nome='" + nome + '\'' +
+				", email='" + email + '\'' +
+				", telefone='" + telefone + '\'' +
+				", matricula='" + matricula + '\'' +
+				", cpf='" + cpf + '\'' +
+				'}';
 	}
-	
 }
