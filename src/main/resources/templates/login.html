@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-br" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Login</title>
+</head>
+<body>
+
+<form th:action="@{/login}" method="post">
+    <div>
+        <label for="username"></label>
+        <input type="text" name="username" id="username" placeholder="Login"/>
+    </div>
+
+    <div>
+        <label for="password"></label>
+        <input type="password" name="password" id="password" placeholder="Senha"/>
+    </div>
+
+    <div class="center">
+        <input type="submit" value="Login">
+    </div>
+    </div>
+    <div th:if="${param.error}">Nome ou Senha inválidos!</div>
+    </div>
+</form>
+
+</body>
+</html>
