@@ -44,4 +44,6 @@ public class Professor extends Pessoa{
 		this.sugestaoProjeto = sugestaoProjeto;
 	}
 
+
+
 }

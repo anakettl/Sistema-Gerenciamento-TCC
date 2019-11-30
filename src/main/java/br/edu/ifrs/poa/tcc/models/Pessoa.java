@@ -31,16 +31,32 @@ public class Pessoa implements Serializable {
 	
 	@NotBlank(message = "Telefone obrigatório")
 	@Column(length = 30)
-	protected Long telefone;
+	protected String telefone;
 	
 	@NotBlank(message = "Matrícula obrigatória")
 	@Column(length = 80, nullable = false)
-	protected Long matricula;
+	protected String matricula;
 	
-	@CPF(message = "CPF invalido")
 	@NotBlank(message = "CPF obrigatório")
 	@Column(length = 80, nullable = false)
 	protected String cpf;
+	
+	public Pessoa() {
+		
+	}
+	public Pessoa(Integer id, @NotBlank(message = "Nome obrigatório") String nome,
+			@NotBlank(message = "Email obrigatório") @Email(message = "Email inválido") String email,
+			@NotBlank(message = "Telefone obrigatório") String telefone,
+			@NotBlank(message = "Matrícula obrigatória") String matricula,
+			@CPF(message = "CPF invalido") @NotBlank(message = "CPF obrigatório") String cpf) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.email = email;
+		this.telefone = telefone;
+		this.matricula = matricula;
+		this.cpf = cpf;
+	}
 
 	public Integer getId() {
 		return id;
@@ -54,8 +70,8 @@ public class Pessoa implements Serializable {
 		return nome;
 	}
 
-	public void setNome(String name) {
-		this.nome = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getEmail() {
@@ -66,14 +82,23 @@ public class Pessoa implements Serializable {
 		this.email = email;
 	}
 	
-	public Long getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(Long telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
+
 	
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+
 	public String getCpf() {
 		return cpf;
 	}
@@ -82,24 +107,19 @@ public class Pessoa implements Serializable {
 		this.cpf = cpf;
 	}
 	
-	public Long getMatricula() {
-		return matricula;
-	}
-
-	public void setMatricula(Long matricula) {
-		this.matricula = matricula;
-	}
-
 	public boolean isNew() {
 		return this.id == null;
 	}
 
 	@Override
 	public String toString() {
-		return "Pessoa [id=" + id + ", nome=" + nome + ", email=" + email + ", telefone=" + telefone + ", matricula="
-				+ matricula + ", cpf=" + cpf + "]";
+		return "Pessoa{" +
+				"id=" + id +
+				", nome='" + nome + '\'' +
+				", email='" + email + '\'' +
+				", telefone='" + telefone + '\'' +
+				", matricula='" + matricula + '\'' +
+				", cpf='" + cpf + '\'' +
+				'}';
 	}
-
-	
-	
 }

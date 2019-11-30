@@ -1,6 +1,7 @@
 package br.edu.ifrs.poa.tcc.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,11 +30,13 @@ public class AlunoService {
 	}
 	
 	//READ
-	public Aluno aluno(Long matricula){
+	public Aluno aluno(Integer id){
 		try {
-			return this.alunos.findByMatricula(matricula);
+			Optional<Aluno> aluno = this.alunos.findById(id);
+			if(aluno.isPresent()) return aluno.get();
+			else throw new ServiceException("Nao foi possivel buscar o aluno");
 		} catch (Exception exception) {
-			throw new ServiceException("Nao foi possivel buscar o aluno", exception);
+			throw new ServiceException("Erro, ", exception);
 		}
 	}
 		
@@ -47,10 +50,11 @@ public class AlunoService {
 	}
 	
 	//DELETE
-		public void excluir(Long matricula){
+		public void excluir(Integer id){
 			try {
-				Aluno aluno = this.alunos.findByMatricula(matricula);
-				this.alunos.delete(aluno);
+				Optional<Aluno> aluno = this.alunos.findById(id);
+				if(aluno.isPresent()) this.alunos.deleteById(aluno.get().getId());
+				else throw new ServiceException("Nao foi possivel buscar o aluno");
 			} catch (Exception exception) {
 				throw new ServiceException("Nao foi possivel excluir o aluno", exception);
 			}
