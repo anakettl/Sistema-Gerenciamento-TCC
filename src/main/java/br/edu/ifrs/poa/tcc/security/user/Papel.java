@@ -1,14 +1,11 @@
 package br.edu.ifrs.poa.tcc.security.user;
 
-import java.util.List;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 
 import org.springframework.security.core.GrantedAuthority;
 
+@Entity
+@Table(name = "PAPEL")
 public class Papel implements  GrantedAuthority {
 	private static final long serialVersionUID = 1L;
 
@@ -17,7 +14,7 @@ public class Papel implements  GrantedAuthority {
 	private Integer id;
 	
 	private String grupo;
-	
+
 	@Override
 	public String getAuthority() {
 		return this.grupo;
