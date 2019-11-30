@@ -1,7 +1,8 @@
-package br.edu.ifrs.poa.tcc.security.user;
+package br.edu.ifrs.poa.tcc.security.user.repositories;
 
 import java.util.Optional;
 
+import br.edu.ifrs.poa.tcc.security.user.UsuarioLogado;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
