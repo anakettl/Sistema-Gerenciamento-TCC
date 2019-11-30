@@ -22,7 +22,7 @@ public class UsuarioLogado implements UserDetails {
 	private String username;
 	
 	@Column(nullable = false)
-	private String senha;
+	private String password;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_user")
@@ -36,7 +36,7 @@ public class UsuarioLogado implements UserDetails {
 
 	@Override
 	public String getPassword() {
-		return this.senha;
+		return this.password;
 	}
 
 	@Override
