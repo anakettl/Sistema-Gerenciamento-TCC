@@ -11,11 +11,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "usuario")
+@SequenceGenerator(name = "SEQUENCE_USUARIO", initialValue = 1, allocationSize = 1)
 public class UsuarioLogado implements UserDetails {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator = "SEQUENCE_USUARIO", strategy = GenerationType.TABLE)
 	private Integer id;
 	
 	@Column(nullable = false,unique = true)
