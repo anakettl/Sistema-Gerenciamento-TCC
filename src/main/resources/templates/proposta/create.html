@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="https://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},'professores')}">
+<head>
+    <title>Proposta</title>
+</head>
+<body>
+<div class="container-fluid">
+    <h2>Adicionar Proposta</h2>
+    <p>Esta view retorna um formulario para cadastro de proposta</p>
+    <form action="adicionaProposta" method="post">
+        Título: <br/>
+        <input type="text" name="titulo"/><br/>
+        <div class="form-group col-md-6">
+            <label>Professores</label>
+            <select name="professor" class="form-control" th:field="*{professores}">
+                <option th:value="null" selected>Escolha</option>
+                <option th:each="professor : ${professores}" th:value="${professor}"
+                        th:text="${professor.nome}"></option>
+            </select>
+        </div>
+        <input type="submit" value="Adicionar"/>
+    </form>
+</div>
+</body>
+</html>
