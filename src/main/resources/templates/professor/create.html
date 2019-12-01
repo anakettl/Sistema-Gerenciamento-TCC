@@ -1,49 +1,46 @@
 <!DOCTYPE html>
 
-<html lang="pt" xmlns:th="https://www.thymeleaf.org" 
-th:replace="~{fragments/layout :: layout (~{::body},'professores', )}">
-	<head>
-		<title>Professor</title>
-	</head>
+<html lang="pt" xmlns:th="https://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},'professores', )}">
+<head>
+    <title>Professor</title>
+</head>
 
-  <body>
+<body>
+<div class="container-fluid">
 
-  <div class="container-fluid">
-
-  <body>
-
-    <h2 th:if="${professor.id} != null" >Dados do Professor:</h2>
-    <h2 th:if="${professor.id} == null" >Novo Professor</h2>
+    <h2 th:if="${professor.id} != null">Dados do Professor:</h2>
+    <h2 th:if="${professor.id} == null">Novo Professor</h2>
 
     <form th:action="@{/professores/create}" th:method="post" th:object="${professor}">
 
-    	<input type="hidden" id="id" th:field="*{id}"/>
+        <input type="hidden" id="id" th:field="*{id}"/>
 
-    	<label>Matricula</label>
-    	<input id="matricula" th:field="*{matricula}"/>
+        <label>Matricula</label>
+        <input id="matricula" th:field="*{matricula}"/>
 
-    	<label>Nome</label>
-    	<input id="nome" th:field="*{nome}"/>
+        <label>Nome</label>
+        <input id="nome" th:field="*{nome}"/>
 
-    	<label>Email</label>
-    	<input id="email" th:field="*{email}"/>
+        <label>Email</label>
+        <input id="email" th:field="*{email}"/>
 
-    	<label>CPF</label>
-    	<input id="cpf" th:field="*{cpf}"/>
+        <label>CPF</label>
+        <input id="cpf" th:field="*{cpf}"/>
 
-    	<label>Telefone</label>
-    	<input id="telefone" th:field="*{telefone}"/>
+        <label>Telefone</label>
+        <input id="telefone" th:field="*{telefone}"/>
 
-    	<button th:if="${professor.id} == null" type="submit">Enviar</button>
-    	<button th:if="${professor.id} != null" onclick()="atualizar">Atualizar</button>
+        <button th:if="${professor.id} == null" type="submit">Enviar</button>
+        <button th:if="${professor.id} != null" onclick()="atualizar">Atualizar</button>
 
-    	<div th:if="${#fields.hasAnyErrors()}" class="row" id="alert_box">
-           <p th:each="err : ${#fields.allErrors()}" th:text="${err}"></p>
- 		</div>
+        <div th:if="${#fields.hasAnyErrors()}" class="row" id="alert_box">
+            <p th:each="err : ${#fields.allErrors()}" th:text="${err}"></p>
+        </div>
 
     </form>
+</div>
 
-  </body>
-
+</body>
 
 </html>

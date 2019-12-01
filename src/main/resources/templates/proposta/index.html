@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="https://www.thymeleaf.org"
+                     th:replace="~{fragments/layout :: layout (~{::body},'propostas')}">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<!--<body>-->
+<!--<section class="section">-->
+
+<!--    <section class="container">-->
+
+<!--        <h1 class="title centraliza-texto">Propostas</h1>-->
+
+<!--        <div class="columns">-->
+<!--            <div class="column is-12">-->
+<!--                <div class="box">-->
+<!--                    <div class="field">-->
+<!--                        <div class="control">-->
+<!--                            <ul>-->
+<!--                                <li th:each="proposta: ${propostasCriadas}">-->
+<!--                                    <span th:text="${proposta.titulo}"></span>-->
+<!--                                    <span th:text="${proposta.autor}"></span>-->
+<!--                                    <span th:text="${proposta.orientador}"></span>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+
+<!--                            <div class="flex space-between">-->
+
+<!--                                <form th:action="'/propostas/create'" method="get">-->
+<!--                                    <button class="button is-primary" type="submit">Nova Proposta</button>-->
+<!--                                </form>-->
+<!--                            </div>-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--    </section>-->
+
+<!--</section>-->
+<!--</body>-->
+
+<!--</html>-->
+
+
+
+
+
+
+<body>
+
+<div class="container-fluid">
+
+    <h2>Propostas</h2>
+
+    <p>Veja a lista de propostas:</p>
+    <a type="button" th:href="@{/propostas/create}">Criar</a>
+
+
+    <table>
+        <thead>
+        <tr>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Orientador</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="proposta : ${propostasCriadas}">
+            <td>
+                <p th:text="${proposta.titulo}"></p>
+            </td>
+            <td>
+                <p th:text="${proposta.autor}"></p>
+            </td>
+            <td>
+                <p th:text="${proposta.orientador}"></p>
+            </td>
+            <td>
+                <a th:href="@{/propostas/__${proposta.id}__}"> Ver</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+
+</div>
+
+</body>
+
+</html>

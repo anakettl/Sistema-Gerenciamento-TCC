@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProfessorRepository extends JpaRepository<Professor, Integer> {
     List<Professor> findAll();
-    Optional<Professor> findById(Integer id);
+    Optional<Professor> findById(Long id);
 }
