@@ -47,6 +47,13 @@ public class PropostaController {
 
 		return "redirect:/propostas";
 	}
+	@GetMapping
+	public String PropostasCriadas( Model model) {
+
+		model.addAttribute("propostasCriadas", propostaService.pegarPropostas());
+
+		return "proposta/read";
+	}
 	
 	@GetMapping("/proposta")
 	public String proposta(Proposta proposta, Aluno aluno, Model model) {
@@ -58,4 +65,5 @@ public class PropostaController {
 			return "/";
 		}
 	}
+
 }
