@@ -8,7 +8,7 @@
 <div class="container-fluid">
     <h2>Adicionar Proposta</h2>
     <p>Esta view retorna um formulario para cadastro de proposta</p>
-    <form action="adicionaProposta" method="post">
+    <form class="rz-form" id="formProposta" th:action="@{/propostas/create}" method="post">
         Título: <br/>
         <input type="text" name="titulo"/><br/>
         <div class="form-group col-md-6">
