@@ -20,6 +20,12 @@ public class Professor extends Pessoa{
 		super(nome, email, telefone, matricula, cpf);
 	}
 
+	public Professor(Titulacao titulo, List<SugestaoProjeto> sugestaoProjeto) {
+		super();
+		this.titulo = titulo;
+		this.sugestaoProjeto = sugestaoProjeto;
+	}
+
 	@ManyToOne
 	private Titulacao titulo;
 	
@@ -28,17 +34,6 @@ public class Professor extends Pessoa{
 	
 	@OneToMany
 	private List<AreaInteresse> areaInteresse;
-	
-	
-	public Professor(Titulacao titulo, List<SugestaoProjeto> sugestaoProjeto) {
-		super();
-		this.titulo = titulo;
-		this.sugestaoProjeto = sugestaoProjeto;
-	}
-	
-	public Professor() {
-		
-	}
 
 	public Titulacao getTitulo() {
 		return titulo;

@@ -8,7 +8,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "sugestoes-proposta")
+@Table(name = "sugestoes_proposta")
 public class SugestaoProjeto extends BaseEntity{
 	
 private static final long serialVersionUID = 1L;
