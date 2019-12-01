@@ -11,7 +11,10 @@ import br.edu.ifrs.poa.tcc.security.user.UsuarioLogado;
 import br.edu.ifrs.poa.tcc.security.user.repositories.PapelRepository;
 import br.edu.ifrs.poa.tcc.security.user.repositories.UsuarioLogadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,12 +24,13 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/signup")
 public class UsuarioController {
 
     @Autowired
@@ -41,7 +45,7 @@ public class UsuarioController {
     @Autowired
     private ProfessorRepository professores;
 
-    @GetMapping
+    @GetMapping(value = "/signup")
     public ModelAndView viewCadastroUsuario(CadastroDto cadastro) {
         ModelAndView model = new ModelAndView("security/signup");
         try {
@@ -56,7 +60,7 @@ public class UsuarioController {
         }
     }
 
-    @PostMapping
+    @PostMapping(value = "/signup")
     public ModelAndView cadastroUsuario(@Valid CadastroDto cadastro, BindingResult resultado, RedirectAttributes redirecionamento) {
         ModelAndView model = new ModelAndView("redirect:/login");
         try {
@@ -85,5 +89,14 @@ public class UsuarioController {
             model.addObject("erro", exception.getMessage());
             return model;
         }
+    }
+
+    @GetMapping(value = "/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null) {
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        return "security/index";
     }
 }
