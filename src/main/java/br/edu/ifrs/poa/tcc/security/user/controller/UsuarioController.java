@@ -1,21 +1,36 @@
 package br.edu.ifrs.poa.tcc.security.user.controller;
 
+import br.edu.ifrs.poa.tcc.models.Aluno;
+import br.edu.ifrs.poa.tcc.models.Professor;
+import br.edu.ifrs.poa.tcc.repositories.AlunoRepository;
+import br.edu.ifrs.poa.tcc.repositories.ProfessorRepository;
+import br.edu.ifrs.poa.tcc.security.user.CadastroDto;
+import br.edu.ifrs.poa.tcc.security.user.Categoria;
+import br.edu.ifrs.poa.tcc.security.user.Papel;
 import br.edu.ifrs.poa.tcc.security.user.UsuarioLogado;
 import br.edu.ifrs.poa.tcc.security.user.repositories.PapelRepository;
 import br.edu.ifrs.poa.tcc.security.user.repositories.UsuarioLogadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
-@RequestMapping("/usuario")
 public class UsuarioController {
 
     @Autowired
@@ -24,32 +39,64 @@ public class UsuarioController {
     @Autowired
     private UsuarioLogadoRepository usuarios;
 
-    @GetMapping("/create")
-    public ModelAndView viewCadastroUsuario(UsuarioLogado usuario) {
-        ModelAndView model = new ModelAndView("aluno/create");
+    @Autowired
+    private AlunoRepository alunos;
+
+    @Autowired
+    private ProfessorRepository professores;
+
+    @GetMapping(value = "/signup")
+    public ModelAndView viewCadastroUsuario(CadastroDto cadastro) {
+        ModelAndView model = new ModelAndView("security/signup");
         try {
-            model.addObject("usuario", usuario);
+            List<Categoria> categorias = Arrays.asList(Categoria.ALUNO,Categoria.PROFESSOR);
+            model.addObject("categorias", categorias);
+            model.addObject("cadastro", cadastro);
             return model;
         } catch (Exception exception) {
             model.addObject("erro", exception.getMessage());
-            model.setViewName("home");
+            model.setViewName("security/index");
             return model;
         }
     }
 
-    @PostMapping("/create")
-    public ModelAndView cadastroUsuario(@Valid UsuarioLogado usuario, @RequestParam("papel") String papel, BindingResult resultado, RedirectAttributes redirecionamento) {
-        ModelAndView model = new ModelAndView("redirect:/home");
+    @PostMapping(value = "/signup")
+    public ModelAndView cadastroUsuario(@Valid CadastroDto cadastro, BindingResult resultado, RedirectAttributes redirecionamento) {
+        ModelAndView model = new ModelAndView("redirect:/login");
         try {
             if(resultado.hasErrors()) {
-                return viewCadastroUsuario(usuario);
+                return viewCadastroUsuario(cadastro);
             }
-            this.usuarios.saveAndFlush(usuario);
+            if (cadastro.getCategoria() == Categoria.ALUNO){
+                List<Papel> papeis = this.papeis.findByGrupo(Categoria.ALUNO);
+                UsuarioLogado usuario = new UsuarioLogado(cadastro.getUsername(), new BCryptPasswordEncoder().encode(cadastro.getPassword()), papeis);
+                Aluno aluno = new Aluno(cadastro.getNome(), cadastro.getEmail(), cadastro.getTelefone(), cadastro.getMatricula(), cadastro.getCpf());
+
+                this.usuarios.saveAndFlush(usuario);
+                this.alunos.saveAndFlush(aluno);
+            } else if (cadastro.getCategoria() == Categoria.PROFESSOR){
+                List<Papel> papeis = this.papeis.findByGrupo(Categoria.PROFESSOR);
+                UsuarioLogado usuario = new UsuarioLogado(cadastro.getUsername(), new BCryptPasswordEncoder().encode(cadastro.getPassword()), papeis);
+                Professor professor = new Professor(cadastro.getNome(), cadastro.getEmail(), cadastro.getTelefone(), cadastro.getMatricula(), cadastro.getCpf());
+
+                this.usuarios.saveAndFlush(usuario);
+                this.professores.saveAndFlush(professor);
+            }
+
             redirecionamento.addFlashAttribute("message", "Usuario salvo");
-            return model;
+            return new ModelAndView(new RedirectView("/login", false));
         } catch (Exception exception) {
             model.addObject("erro", exception.getMessage());
             return model;
         }
+    }
+
+    @GetMapping(value = "/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null) {
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        return "security/index";
     }
 }

@@ -13,6 +13,13 @@ public class Professor extends Pessoa{
 	
 	private static final long serialVersionUID = 1L;
 
+	public Professor() {
+
+	}
+	public Professor(String nome, String email, String telefone, String matricula, String cpf) {
+		super(nome, email, telefone, matricula, cpf);
+	}
+
 	@ManyToOne
 	private Titulacao titulo;
 	

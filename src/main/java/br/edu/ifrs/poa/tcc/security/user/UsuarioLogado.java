@@ -29,6 +29,14 @@ public class UsuarioLogado implements UserDetails {
 	@JoinColumn(name = "id_user")
 	private List<Papel> papeis = new ArrayList<>();
 
+	public UsuarioLogado() {
+	}
+
+	public UsuarioLogado(String username, String password, List<Papel> papeis) {
+		this.username = username;
+		this.password = password;
+		this.papeis = papeis;
+	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
