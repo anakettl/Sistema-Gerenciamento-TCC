@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -17,14 +18,15 @@ import br.edu.ifrs.poa.tcc.models.Professor;
 import br.edu.ifrs.poa.tcc.service.ProfessorService;
 
 @Controller
+@RequestMapping(value = "/professores")
 public class ProfessorController {
 	
 	private ProfessorService professores;
 
-	@GetMapping("/professor")
-    public String index() {
-        return "professor/index";
-    }
+	public ProfessorController(ProfessorService professores) {
+		super();
+		this.professores = professores;
+	}
 	
 	@GetMapping("/create")
 	public ModelAndView viewSalvar(Professor professor) {
@@ -54,8 +56,6 @@ public class ProfessorController {
 			return model;
 		}
 	}
-	
-	
 	
 	@GetMapping
 	public String todos(Model model) {

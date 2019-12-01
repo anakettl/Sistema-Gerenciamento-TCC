@@ -1,7 +1,7 @@
  <!DOCTYPE html>
 
 <html lang="pt" xmlns:th="https://www.thymeleaf.org" 
-th:replace="~{fragments/layout :: layout (~{::body},'professores')}">
+th:replace="~{fragments/layout :: layout (~{::body},'professores', )}">
 	<head>
 		<title>Professor</title>
 	</head>
@@ -9,30 +9,41 @@ th:replace="~{fragments/layout :: layout (~{::body},'professores')}">
   <body>
   
   <div class="container-fluid">
+  
+  <body>
 
-    <h2>Adicionar Professor</h2>
+    <h2 th:if="${professor.id} != null" >Dados do Professor:</h2>
+    <h2 th:if="${professor.id} == null" >Novo Professor</h2>
     
-    <p>Esta view retorna um formulario para cadastro de professor</p>
-    
-    <form action="adicionaProfessor" method="post">
-     	Matricula: <br/>
-        <input type="text" name="matricula" /><br/>
-    
-        Nome: <br/>
-        <input type="text" name="nome" /><br/>
-        <br/>
-        Email: <br/>
-        <input type="text" name="email" /><br/>
-       
-        <br/><br/>
-        <input type="submit" value="Adicionar"/>
+    <form th:action="@{/professores/create}" th:method="post" th:object="${professor}">
+    	
+    	<input type="hidden" id="id" th:field="*{id}"/>
+    	
+    	<label>Matricula</label>
+    	<input id="matricula" th:field="*{matricula}"/>
+    	
+    	<label>Nome</label>
+    	<input id="nome" th:field="*{nome}"/>
+    	
+    	<label>Email</label>
+    	<input id="email" th:field="*{email}"/>
+    	
+    	<label>CPF</label>
+    	<input id="cpf" th:field="*{cpf}"/>
+    	
+    	<label>Telefone</label>
+    	<input id="telefone" th:field="*{telefone}"/>
+    	
+    	<button th:if="${professor.id} == null" type="submit">Enviar</button>
+    	<button th:if="${professor.id} != null" onclick()="atualizar">Atualizar</button>
+    	
+    	<div th:if="${#fields.hasAnyErrors()}" class="row" id="alert_box">
+           <p th:each="err : ${#fields.allErrors()}" th:text="${err}"></p>
+ 		</div>
+    	
     </form>
-
-	</div>
-	
-
-
 	
   </body>
+  
 
 </html>
