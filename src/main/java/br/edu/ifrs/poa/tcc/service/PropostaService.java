@@ -16,7 +16,15 @@ public class PropostaService {
 	public PropostaService(PropostaRepository proposta) {
 		this.proposta = proposta;
 	}
-	
+
+	public void salvar(Proposta proposta){
+		try {
+			this.proposta.saveAndFlush(proposta);
+		} catch (Exception exception) {
+			throw new ServiceException("Nao foi possivel salvar uma nova proposta", exception);
+		}
+	}
+
 	public Proposta buscarPropostaPeloAluno(Aluno aluno) {
 		try {
 			return this.proposta.findByAutor(aluno);
