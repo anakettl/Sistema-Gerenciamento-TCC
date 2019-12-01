@@ -7,6 +7,8 @@ import br.edu.ifrs.poa.tcc.models.Proposta;
 import br.edu.ifrs.poa.tcc.models.Aluno;
 import br.edu.ifrs.poa.tcc.repositories.PropostaRepository;
 
+import java.util.List;
+
 @Service
 public class PropostaService {
 
@@ -20,6 +22,10 @@ public class PropostaService {
     public Proposta salvar(Proposta proposta) {
         return repository.save(proposta);
     }
+    public List<Proposta> pegarPropostas() {
+        return repository.findAll();
+    }
+
 
     public Proposta buscarPropostaPeloAluno(Aluno aluno) {
         try {
