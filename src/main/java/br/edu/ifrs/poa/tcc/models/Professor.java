@@ -10,6 +10,19 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "professores")
 public class Professor extends Pessoa{
+	
+	private static final long serialVersionUID = 1L;
+
+	@ManyToOne
+	private Titulacao titulo;
+	
+	@OneToMany
+	private List<SugestaoProjeto> sugestaoProjeto;
+	
+	@OneToMany
+	private List<AreaInteresse> areaInteresse;
+	
+	
 	public Professor(Titulacao titulo, List<SugestaoProjeto> sugestaoProjeto) {
 		super();
 		this.titulo = titulo;
@@ -19,14 +32,6 @@ public class Professor extends Pessoa{
 	public Professor() {
 		
 	}
-
-	private static final long serialVersionUID = 1L;
-
-	@ManyToOne
-	private Titulacao titulo;
-	
-	@OneToMany
-	private List<SugestaoProjeto> sugestaoProjeto;
 
 	public Titulacao getTitulo() {
 		return titulo;

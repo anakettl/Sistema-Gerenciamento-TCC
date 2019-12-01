@@ -2,12 +2,30 @@ package br.edu.ifrs.poa.tcc.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "sugestoes-proposta")
 public class SugestaoProjeto extends BaseEntity{
+	
+private static final long serialVersionUID = 1L;
+	
+	@Column(nullable = false)
+	private String titulo;
+	
+	@Column(nullable = false)
+	private Boolean pesquisa;
+	
+	@Column(nullable = false)
+	private String descricao;
+	
+	@ManyToOne
+	private Professor orientador;
+	
+	
 	public SugestaoProjeto(String titulo, Boolean pesquisa, String descricao) {
 		super();
 		this.titulo = titulo;
@@ -19,17 +37,6 @@ public class SugestaoProjeto extends BaseEntity{
 	public SugestaoProjeto() {
 		
 	}
-
-	private static final long serialVersionUID = 1L;
-	
-	@Column(nullable = false)
-	private String titulo;
-	
-	@Column(nullable = false)
-	private Boolean pesquisa;
-	
-	@Column(nullable = false)
-	private String descricao;
 
 	public String getTitulo() {
 		return titulo;

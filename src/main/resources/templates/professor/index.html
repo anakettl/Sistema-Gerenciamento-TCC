@@ -10,11 +10,15 @@ th:replace="~{fragments/layout :: layout (~{::body},'professor')}">
   <body>
 
 	<div class="container-fluid">
-    <h2>Professor</h2>
+	
+	<h2>Professor</h2>
     
-    <p>Esta view retorna a relação de todos os professores</p>
+    <p>Veja a lista de professores:</p>
     
-    <a type="button" th:href="@{/professor/create}">Criar</a>
+    <div th:if="${mensagem}"></div>
+    
+    <a type="button" th:href="@{/professores/create}">Criar</a>
+    
     
 	<!-- 
 	<table id="professor" class="table table-striped">
