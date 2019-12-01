@@ -9,35 +9,52 @@
 
 <body>
 
-<div class="container-fluid">
-    <h2>Professor</h2>
+	<div class="container-fluid">
 
-    <p>Esta view retorna a relação de todos os professores</p>
+	<h2>Professor</h2>
 
-    <a type="button" th:href="@{/professor/create}">Criar</a>
+    <p>Veja a lista de professores:</p>
 
-    <!--
-    <table id="professor" class="table table-striped">
-        <thead>
-        <tr>
-            <th style="width: 150px;">ID</th>
-            <th style="width: 150px;">NAME</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="pro : ${professor}">
-            <td>
-                <p th:text="${pro.id}"></p>
-            </td>
-            <td>
-                <p th:text="${pro.name}"></p>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <div th:if="${mensagem}"></div>
 
-     -->
+    <a type="button" th:href="@{/professores/create}">Criar</a>
 
+
+	<table>
+		<thead>
+		<tr>
+			<th>NOME</th>
+			<th>EMAIL</th>
+			<th>MATRICULA</th>
+			<th>CPF</th>
+			<th>TELEFONE</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each="professor : ${professores}">
+			<td>
+				<p th:text="${professor.nome}"></p>
+			</td>
+			<td>
+				<p th:text="${professor.email}"></p>
+			</td>
+			<td>
+				<p th:text="${professor.matricula}"></p>
+			</td>
+			<td>
+				<p th:text="${professor.cpf}"></p>
+			</td>
+			<td>
+				<p th:text="${professor.telefone}"></p>
+			</td>
+			<td>
+				<a th:href="@{/professores/__${professor.id}__}"> Ver</a>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	
+	
 
 </div>
 

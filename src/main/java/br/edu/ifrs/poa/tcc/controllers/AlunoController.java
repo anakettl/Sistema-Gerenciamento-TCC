@@ -34,7 +34,7 @@ public class AlunoController {
             return model;
         } catch (Exception exception) {
             model.addObject("erro", exception.getMessage());
-            model.setViewName("alunos");
+            model.setViewName("welcome");
             return model;
         }
     }

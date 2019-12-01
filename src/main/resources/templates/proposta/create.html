@@ -6,7 +6,8 @@
 </head>
 <body>
 <div class="container-fluid">
-    <h2>Adicionar Proposta</h2>
+    <h2 th:if="${proposta.id} != null" >Dados da proposta:</h2>
+    <h2 th:if="${proposta.id} == null" >Nova proposta</h2>
     <p>Esta view retorna um formulario para cadastro de proposta</p>
     <form class="rz-form" id="formProposta" th:action="@{/propostas/create}" method="post">
         Título: <br/>
@@ -19,7 +20,8 @@
                         th:text="${professor.nome}"></option>
             </select>
         </div>
-        <input type="submit" value="Adicionar"/>
+        <button th:if="${proposta.id} != null" onclick()="atualizar">Atualizar</button>
+        <button type="submit" value="Adicionar"></button>
     </form>
 </div>
 </body>
