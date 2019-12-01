@@ -32,9 +32,10 @@ public class UsuarioLogado implements UserDetails {
 	public UsuarioLogado() {
 	}
 
-	public UsuarioLogado(String username, String password) {
+	public UsuarioLogado(String username, String password, List<Papel> papeis) {
 		this.username = username;
 		this.password = password;
+		this.papeis = papeis;
 	}
 
 	@Override

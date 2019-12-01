@@ -40,9 +40,11 @@
         <div class="row">
             <div class="col-sm">
                 <button type="submit" class="btn btn-primary">Submit</button>
+                <a class="btn btn-danger" th:href="@{/}">Cancelar</a>
             </div>
             <div class="col-sm">
                 <div class="alert alert-danger" role="alert" th:if="${param.error}">Nome ou Senha inválidos!</div>
+                <div class="alert alert-success" role="alert" th:if="${message}"><p th:text="${message}"></p></div>
             </div>
         </div>
     </div>

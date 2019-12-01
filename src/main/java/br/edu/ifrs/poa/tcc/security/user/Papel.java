@@ -6,11 +6,12 @@ import org.springframework.security.core.GrantedAuthority;
 
 @Entity
 @Table(name = "PAPEL")
+@SequenceGenerator(name = "SEQUENCE_PAPEL", initialValue = 1, allocationSize = 1)
 public class Papel implements  GrantedAuthority {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(generator = "SEQUENCE_PAPEL", strategy = GenerationType.TABLE)
 	private Integer id;
 
 	@Enumerated(EnumType.STRING)

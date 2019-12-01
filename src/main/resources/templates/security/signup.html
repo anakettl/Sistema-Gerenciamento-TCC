@@ -20,7 +20,7 @@
     <title>Sign Up</title>
 </head>
 <body>
-    <form class="container" th:action="@{/signup}" th:object="${cadastro}" method="post">
+    <form class="container" th:action="@{/signup}" th:method="post" th:object="${cadastro}">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="username">Username</label>
