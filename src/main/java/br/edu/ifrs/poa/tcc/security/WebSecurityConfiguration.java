@@ -15,33 +15,33 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	AuthService servico;
+    @Autowired
+    AuthService servico;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(servico).passwordEncoder(new BCryptPasswordEncoder());
     }
-	
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .authorizeRequests()
+                .authorizeRequests()
                 .antMatchers("/login", "/resources/**", "/h2/**", "/signup", "/").permitAll()
 //                .antMatchers("/professores").hasRole("ADMIN")
 //                .antMatchers("/alunos").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
-            .exceptionHandling()
+                .exceptionHandling()
                 .accessDeniedPage("/negado")
                 .and()
-            .formLogin()
+                .formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/home")
                 .failureUrl("/login?error=1")
                 .permitAll()
                 .and()
-            .logout()
+                .logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/logout")
                 .invalidateHttpSession(true)

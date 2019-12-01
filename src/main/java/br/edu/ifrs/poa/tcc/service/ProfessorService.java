@@ -14,6 +14,7 @@ public class ProfessorService {
     public ProfessorService(ProfessorRepository repository) {
         this.repository = repository;
     }
+
     public List<Professor> pegarProfessores() {
         return repository.findAll();
     }

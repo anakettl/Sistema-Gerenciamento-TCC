@@ -1,11 +1,10 @@
 package br.edu.ifrs.poa.tcc.service;
 
+import br.edu.ifrs.poa.tcc.models.Aluno;
+import br.edu.ifrs.poa.tcc.models.Proposta;
+import br.edu.ifrs.poa.tcc.repositories.PropostaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import br.edu.ifrs.poa.tcc.models.Proposta;
-import br.edu.ifrs.poa.tcc.models.Aluno;
-import br.edu.ifrs.poa.tcc.repositories.PropostaRepository;
 
 import java.util.List;
 
@@ -22,6 +21,7 @@ public class PropostaService {
     public Proposta salvar(Proposta proposta) {
         return repository.save(proposta);
     }
+
     public List<Proposta> pegarPropostas() {
         return repository.findAll();
     }
