@@ -13,11 +13,11 @@ public class Papel implements  GrantedAuthority {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private String grupo;
+	private Categoria grupo;
 
 	@Override
 	public String getAuthority() {
-		return this.grupo;
+		return this.grupo.getDescricao();
 	}
 
 }

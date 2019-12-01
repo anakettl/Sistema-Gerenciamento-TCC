@@ -1,15 +1,15 @@
-package br.edu.ifrs.poa.tcc.models;
+package br.edu.ifrs.poa.tcc.security.user;
 
 public enum Categoria {
     PROFESSOR("Professor"), ALUNO("Aluno"), ADMIN("Administrador");
 
-    private String t;
+    private String descricao;
 
-    Categoria(String t) {
-    	this.t = t;
+    Categoria(String descricao) {
+    	this.descricao = descricao;
     }
     
-    public String getT() {
-    	return this.t;
+    public String getDescricao() {
+    	return this.descricao;
     }
 }

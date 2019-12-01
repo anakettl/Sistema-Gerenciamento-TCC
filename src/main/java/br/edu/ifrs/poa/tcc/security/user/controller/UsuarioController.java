@@ -15,7 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/usuario")
+@RequestMapping("/signup")
 public class UsuarioController {
 
     @Autowired
@@ -24,20 +24,20 @@ public class UsuarioController {
     @Autowired
     private UsuarioLogadoRepository usuarios;
 
-    @GetMapping("/create")
+    @GetMapping
     public ModelAndView viewCadastroUsuario(UsuarioLogado usuario) {
-        ModelAndView model = new ModelAndView("aluno/create");
+        ModelAndView model = new ModelAndView("security/signup");
         try {
             model.addObject("usuario", usuario);
             return model;
         } catch (Exception exception) {
             model.addObject("erro", exception.getMessage());
-            model.setViewName("home");
+            model.setViewName("welcome");
             return model;
         }
     }
 
-    @PostMapping("/create")
+    @PostMapping
     public ModelAndView cadastroUsuario(@Valid UsuarioLogado usuario, @RequestParam("papel") String papel, BindingResult resultado, RedirectAttributes redirecionamento) {
         ModelAndView model = new ModelAndView("redirect:/home");
         try {
