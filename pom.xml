@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.edu.ifrs.poa</groupId>
 	<artifactId>Sistema-Gerenciamento-TCC</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>Sistema-Gerenciamento-TCC</name>
 	<description>Project for Spring Boot Web</description>
 
@@ -42,7 +42,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
