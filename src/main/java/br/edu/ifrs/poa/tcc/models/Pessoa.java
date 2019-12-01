@@ -44,13 +44,7 @@ public class Pessoa implements Serializable {
 	public Pessoa() {
 		
 	}
-	public Pessoa(Integer id, @NotBlank(message = "Nome obrigatório") String nome,
-			@NotBlank(message = "Email obrigatório") @Email(message = "Email inválido") String email,
-			@NotBlank(message = "Telefone obrigatório") String telefone,
-			@NotBlank(message = "Matrícula obrigatória") String matricula,
-			@CPF(message = "CPF invalido") @NotBlank(message = "CPF obrigatório") String cpf) {
-		super();
-		this.id = id;
+	public Pessoa(String nome, String email, String telefone, String matricula, String cpf) {
 		this.nome = nome;
 		this.email = email;
 		this.telefone = telefone;

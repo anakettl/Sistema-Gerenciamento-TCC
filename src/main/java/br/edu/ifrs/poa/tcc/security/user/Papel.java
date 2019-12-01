@@ -12,7 +12,8 @@ public class Papel implements  GrantedAuthority {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
+	@Enumerated(EnumType.STRING)
 	private Categoria grupo;
 
 	@Override

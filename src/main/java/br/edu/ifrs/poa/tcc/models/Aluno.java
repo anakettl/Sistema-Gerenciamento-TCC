@@ -14,7 +14,11 @@ public class Aluno extends Pessoa {
 	private Proposta proposta;
 
 	public Aluno() {
-		super();
+
+	}
+
+	public Aluno(String nome, String email, String telefone, String matricula, String cpf) {
+		super(nome, email, telefone, matricula, cpf);
 	}
 
 	public Proposta getProposta() {
