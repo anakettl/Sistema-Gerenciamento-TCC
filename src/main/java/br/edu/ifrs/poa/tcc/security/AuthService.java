@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import br.edu.ifrs.poa.tcc.security.user.UsuarioLogado;
-import br.edu.ifrs.poa.tcc.security.user.UsuarioLogadoRepository;
+import br.edu.ifrs.poa.tcc.security.user.repositories.UsuarioLogadoRepository;
 
 @Service
 public class AuthService implements UserDetailsService {
