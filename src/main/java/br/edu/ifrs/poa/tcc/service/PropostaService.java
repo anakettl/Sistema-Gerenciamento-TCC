@@ -9,28 +9,24 @@ import br.edu.ifrs.poa.tcc.repositories.PropostaRepository;
 
 @Service
 public class PropostaService {
-	
-	@Autowired
-	private PropostaRepository proposta;
 
-	public PropostaService(PropostaRepository proposta) {
-		this.proposta = proposta;
-	}
+    @Autowired
+    private PropostaRepository repository;
 
-	public void salvar(Proposta proposta){
-		try {
-			this.proposta.saveAndFlush(proposta);
-		} catch (Exception exception) {
-			throw new ServiceException("Nao foi possivel salvar uma nova proposta", exception);
-		}
-	}
+    public PropostaService(PropostaRepository repository) {
+        this.repository = repository;
+    }
 
-	public Proposta buscarPropostaPeloAluno(Aluno aluno) {
-		try {
-			return this.proposta.findByAutor(aluno);
-		} catch (Exception exception) {
-			throw new ServiceException(exception);
-		}
-	}
-	
+    public Proposta salvar(Proposta proposta) {
+        return repository.save(proposta);
+    }
+
+    public Proposta buscarPropostaPeloAluno(Aluno aluno) {
+        try {
+            return this.repository.findByAutor(aluno);
+        } catch (Exception exception) {
+            throw new ServiceException(exception);
+        }
+    }
+
 }
