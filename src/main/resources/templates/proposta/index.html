@@ -81,6 +81,14 @@
                 <p th:text="${proposta.orientador}"></p>
             </td>
             <td>
+                <form th:action="@{'/propostas/excluir'}" method="post">
+                    <button type="submit" class="button rz-botao">
+                        Deletar
+                    </button>
+                </form>
+
+            </td>
+            <td>
                 <a th:href="@{/propostas/__${proposta.id}__}"> Ver</a>
             </td>
         </tr>

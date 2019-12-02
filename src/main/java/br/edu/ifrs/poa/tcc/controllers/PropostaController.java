@@ -71,6 +71,12 @@ public class PropostaController {
             return model;
         }
     }
+    @PostMapping("/{id}/excluir")
+    public String remover(@PathVariable("id") Integer id) {
+        propostaService.remover(id);
+
+        return "redirect:/minhas-listas";
+    }
 
     @GetMapping("/proposta")
     public String proposta(Proposta proposta, Aluno aluno, Model model) {

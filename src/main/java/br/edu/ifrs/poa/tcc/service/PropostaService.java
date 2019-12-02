@@ -30,6 +30,10 @@ public class PropostaService {
         return repository
                 .findById(id).get();
     }
+    public void remover(Integer id) {
+        repository.deleteById(id);
+    }
+
 
 
     public Proposta buscarPropostaPeloAluno(Aluno aluno) {
