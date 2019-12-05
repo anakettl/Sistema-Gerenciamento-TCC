@@ -2,13 +2,11 @@ package br.edu.ifrs.poa.tcc.models;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "professores")
+@SequenceGenerator(name = "SEQUENCE_PROFESSOR", initialValue = 1, allocationSize = 1)
 public class Professor extends Pessoa{
 
 	private static final long serialVersionUID = 1L;
@@ -16,6 +14,11 @@ public class Professor extends Pessoa{
 	public Professor() {
 
 	}
+
+	public Integer getId() {
+		return id;
+	}
+
 	public Professor(String nome, String email, String telefone, String matricula, String cpf) {
 		super(nome, email, telefone, matricula, cpf);
 	}
@@ -25,6 +28,10 @@ public class Professor extends Pessoa{
 		this.titulo = titulo;
 		this.sugestaoProjeto = sugestaoProjeto;
 	}
+
+	@Id
+	@GeneratedValue(generator = "SEQUENCE_PROFESSOR", strategy = GenerationType.TABLE)
+	private Integer id;
 
 	@ManyToOne
 	private Titulacao titulo;

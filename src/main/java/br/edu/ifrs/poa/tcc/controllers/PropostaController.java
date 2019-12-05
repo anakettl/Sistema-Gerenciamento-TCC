@@ -1,8 +1,7 @@
 package br.edu.ifrs.poa.tcc.controllers;
 
-import br.edu.ifrs.poa.tcc.models.Aluno;
-import br.edu.ifrs.poa.tcc.models.Professor;
 import br.edu.ifrs.poa.tcc.models.Proposta;
+import br.edu.ifrs.poa.tcc.service.AlunoService;
 import br.edu.ifrs.poa.tcc.service.ProfessorService;
 import br.edu.ifrs.poa.tcc.service.PropostaService;
 import org.springframework.stereotype.Controller;
@@ -14,52 +13,53 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/propostas")
 public class PropostaController {
 
+    private AlunoService alunoService;
     private PropostaService propostaService;
     private ProfessorService professorService;
 
-    public PropostaController(PropostaService propostaService, ProfessorService professorService) {
+    public PropostaController(PropostaService propostaService, ProfessorService professorService, AlunoService alunoService) {
         this.propostaService = propostaService;
         this.professorService = professorService;
+        this.alunoService = alunoService;
     }
 
     @GetMapping("/create")
-    public String criarProposta(Model model) {
-        model.addAttribute("professores", professorService.pegarProfessores());
-        model.addAttribute("proposta", new Proposta());
-        return "proposta/create";
+    public ModelAndView criarProposta(Proposta proposta) {
+        ModelAndView model = new ModelAndView("proposta/create");
+        model.addObject("professores", professorService.pegarProfessores());
+        model.addObject("proposta", proposta);
+        return model;
     }
 
     @PostMapping("/create")
-    public String salvarProposta(Proposta proposta, BindingResult resultadoValidacao, Model model, RedirectAttributes redirecionamentoDeAtributos) {
-
+    public ModelAndView salvarProposta(@Valid Proposta proposta, BindingResult resultadoValidacao, Model model, RedirectAttributes redirecionamentoDeAtributos) {
         if (resultadoValidacao.hasErrors()) {
             model.addAttribute("erros", resultadoValidacao.getAllErrors());
-            model.addAttribute("professores", professorService.pegarProfessores());
-
-            return "proposta/create";
+            return criarProposta(proposta);
         }
-
+        proposta.setAutor(this.alunoService.aluno(1));
         propostaService.salvar(proposta);
 
         redirecionamentoDeAtributos.addFlashAttribute("mensagem", "Proposta criada com sucesso!");
-
-        return "redirect:/propostas";
+        return new ModelAndView("redirect:/propostas");
     }
 
     @GetMapping
     public String PropostasCriadas(Model model) {
-
         model.addAttribute("propostasCriadas", propostaService.pegarPropostas());
-
         return "proposta/index";
     }
-    @GetMapping("{id}")
-    public ModelAndView ver(@PathVariable("id") Long id) {
+
+    @GetMapping("/{id}")
+    public ModelAndView ver(@PathVariable("id") Integer id) {
         ModelAndView model = new ModelAndView("proposta/create");
         try {
             Proposta proposta = this.propostaService.encontraUma(id);
@@ -67,7 +67,7 @@ public class PropostaController {
             return model;
         } catch (Exception exception) {
             model.addObject("erro", exception.getMessage());
-            model.setViewName("propostas");
+            model.setView(new RedirectView("redirect:/propostas"));
             return model;
         }
     }
@@ -75,19 +75,7 @@ public class PropostaController {
     public String remover(@PathVariable("id") Integer id) {
         propostaService.remover(id);
 
-        return "redirect:/minhas-listas";
+        return "redirect:/propostas";
     }
-
-    @GetMapping("/proposta")
-    public String proposta(Proposta proposta, Aluno aluno, Model model) {
-        try {
-            Proposta p = this.propostaService.buscarPropostaPeloAluno(aluno);
-            model.addAttribute("proposta", p);
-            return "proposta/show";
-        } catch (Exception exception) {
-            return "/";
-        }
-    }
-
 
 }

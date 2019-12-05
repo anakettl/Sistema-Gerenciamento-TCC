@@ -26,7 +26,7 @@ public class PropostaService {
         return repository.findAll();
     }
 
-    public Proposta encontraUma(Long id) {
+    public Proposta encontraUma(Integer id) {
         return repository
                 .findById(id).get();
     }

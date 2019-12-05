@@ -12,7 +12,7 @@ public interface PropostaRepository extends JpaRepository<Proposta, Integer> {
 
     List<Proposta> findAll();
 
-    Optional<Proposta> findById(Long id);
+    Optional<Proposta> findById(Integer id);
 
     Proposta findByAutor(Aluno autor);
 

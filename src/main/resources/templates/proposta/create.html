@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns:th="https://www.thymeleaf.org"
-      th:replace="~{fragments/layout :: layout (~{::body},'professores')}">
+      th:replace="~{fragments/layout :: layout (~{::body},'propostas')}">
 <head>
     <title>Proposta</title>
 </head>
 <body>
 <div class="container-fluid">
+
     <h2 th:if="${proposta.id} != null" >Dados da proposta:</h2>
     <h2 th:if="${proposta.id} == null" >Nova proposta</h2>
-    <p>Esta view retorna um formulario para cadastro de proposta</p>
-    <form class="rz-form" id="formProposta" th:action="@{/propostas/create}" method="post">
-        Título: <br/>
-        <input type="text" name="titulo"/><br/>
+
+    <form th:action="@{/propostas/create}" method="post" th:object="${proposta}">
+
+        <label>Título</label>
+        <input type="text" name="titulo" th:field="*{titulo}"/> <br/>
+
         <div class="form-group col-md-6">
             <label>Professores</label>
-            <select name="professor" class="form-control" th:field="*{professores}">
+            <select name="professor" class="form-control" th:field="*{orientador}">
                 <option th:value="null" selected>Escolha</option>
-                <option th:each="professor : ${professores}" th:value="${professor}"
+                <option th:each="professor : ${professores}" th:value="${professor.id}"
                         th:text="${professor.nome}"></option>
             </select>
         </div>
-        <button th:if="${proposta.id} != null" onclick()="atualizar">Atualizar</button>
-        <button type="submit" value="Adicionar"> Criar</button>
+
+        <button th:if="${proposta.id} == null" type="submit">Enviar</button>
+        <button th:if="${proposta.id} != null" type="submit">Atualizar</button>
+
     </form>
 </div>
 </body>

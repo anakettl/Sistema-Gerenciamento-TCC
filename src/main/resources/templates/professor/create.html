@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="pt" xmlns:th="https://www.thymeleaf.org"
-      th:replace="~{fragments/layout :: layout (~{::body},'professores', )}">
+      th:replace="~{fragments/layout :: layout (~{::body},'professores' )}">
 <head>
     <title>Professor</title>
 </head>
@@ -16,23 +16,23 @@
 
         <input type="hidden" id="id" th:field="*{id}"/>
 
-        <label>Matricula</label>
+        <label for="matricula">Matricula</label>
         <input id="matricula" th:field="*{matricula}"/>
 
-        <label>Nome</label>
+        <label for="nome">Nome</label>
         <input id="nome" th:field="*{nome}"/>
 
-        <label>Email</label>
+        <label for="email">Email</label>
         <input id="email" th:field="*{email}"/>
 
-        <label>CPF</label>
+        <label for="cpf">CPF</label>
         <input id="cpf" th:field="*{cpf}"/>
 
-        <label>Telefone</label>
+        <label for="telefone">Telefone</label>
         <input id="telefone" th:field="*{telefone}"/>
 
         <button th:if="${professor.id} == null" type="submit">Enviar</button>
-        <button th:if="${professor.id} != null" onclick()="atualizar">Atualizar</button>
+        <button th:if="${professor.id} != null" type="submit">Atualizar</button>
 
         <div th:if="${#fields.hasAnyErrors()}" class="row" id="alert_box">
             <p th:each="err : ${#fields.allErrors()}" th:text="${err}"></p>

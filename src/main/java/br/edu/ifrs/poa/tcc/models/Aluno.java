@@ -1,14 +1,16 @@
 package br.edu.ifrs.poa.tcc.models;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "alunos") // nome de tabela deve ser o nome da classe no plural em letras minusculas
+@SequenceGenerator(name = "SEQUENCE_ALUNO", initialValue = 1, allocationSize = 1)
 public class Aluno extends Pessoa {
     private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(generator = "SEQUENCE_ALUNO", strategy = GenerationType.TABLE)
+    private Integer id;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Proposta proposta;
@@ -19,6 +21,10 @@ public class Aluno extends Pessoa {
 
     public Aluno(String nome, String email, String telefone, String matricula, String cpf) {
         super(nome, email, telefone, matricula, cpf);
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public Proposta getProposta() {
