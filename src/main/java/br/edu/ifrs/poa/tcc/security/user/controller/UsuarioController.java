@@ -64,14 +64,14 @@ public class UsuarioController {
             }
             if (cadastro.getCategoria() == Categoria.ALUNO){
                 List<Papel> papeis = this.papeis.findByGrupo(Categoria.ALUNO);
-                UsuarioLogado usuario = new UsuarioLogado(cadastro.getUsername(), new BCryptPasswordEncoder().encode(cadastro.getPassword()), papeis, Categoria.ALUNO);
+                UsuarioLogado usuario = new UsuarioLogado(cadastro.getUsername(), new BCryptPasswordEncoder().encode(cadastro.getPassword()), papeis);
                 Aluno aluno = new Aluno(cadastro.getNome(), cadastro.getEmail(), cadastro.getTelefone(), cadastro.getMatricula(), cadastro.getCpf());
 
                 this.usuarios.saveAndFlush(usuario);
                 this.alunos.saveAndFlush(aluno);
             } else if (cadastro.getCategoria() == Categoria.PROFESSOR){
                 List<Papel> papeis = this.papeis.findByGrupo(Categoria.PROFESSOR);
-                UsuarioLogado usuario = new UsuarioLogado(cadastro.getUsername(), new BCryptPasswordEncoder().encode(cadastro.getPassword()), papeis, Categoria.PROFESSOR);
+                UsuarioLogado usuario = new UsuarioLogado(cadastro.getUsername(), new BCryptPasswordEncoder().encode(cadastro.getPassword()), papeis);
                 Professor professor = new Professor(cadastro.getNome(), cadastro.getEmail(), cadastro.getTelefone(), cadastro.getMatricula(), cadastro.getCpf());
 
                 this.usuarios.saveAndFlush(usuario);

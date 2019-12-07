@@ -73,4 +73,20 @@ public class UsuarioLogado implements UserDetails {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "UsuarioLogado{" +
+				"id=" + id +
+				", username='" + username + '\'' +
+				", password='" + password + '\'' +
+				", papeis=" + papeis +
+				'}';
+	}
+
+	public boolean isRole(Categoria role) {
+		if (this.papeis.contains(role)){
+			return true;
+		}
+		return false;
+	}
 }

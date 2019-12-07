@@ -13,7 +13,7 @@ import br.edu.ifrs.poa.tcc.security.user.repositories.UsuarioLogadoRepository;
 
 @Service
 public class AuthService implements UserDetailsService {
-	
+
 	@Autowired
 	UsuarioLogadoRepository repositorio;
 

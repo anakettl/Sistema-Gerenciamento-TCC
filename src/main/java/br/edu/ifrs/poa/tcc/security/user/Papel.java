@@ -22,4 +22,8 @@ public class Papel implements  GrantedAuthority {
 		return this.grupo.getDescricao();
 	}
 
+	@Override
+	public String toString() {
+		return grupo.getDescricao();
+	}
 }
