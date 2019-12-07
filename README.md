@@ -11,6 +11,7 @@ O objetivo será desenvolver um sistema que sirva como ferramenta de apoio ao ge
 * [Git-Scm](https://git-scm.com/downloads)
 * [Maven](https://www-eu.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip) - [instrucoes de instalacao](https://maven.apache.org/install.html)
 * [Jdk 8 ou superior](https://www.oracle.com/technetwork/pt/java/javase/downloads/jdk8-downloads-2133151.html)
+* Obs. caso voce nao consiga baixar e configurar o maven -> [leia](http://luizricardo.org/2014/06/instalando-configurando-e-usando-o-maven-para-gerenciar-suas-dependencias-e-seus-projetos-java/)
 #### Maven e NetBeans*
 > Caso seja mais conveniente leia o link completo [aqui](http://wiki.netbeans.org/Maven)
 * Usando o NetBeans com Apache Maven.
