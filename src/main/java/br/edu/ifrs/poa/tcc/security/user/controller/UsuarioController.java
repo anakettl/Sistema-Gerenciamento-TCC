@@ -4,12 +4,8 @@ import br.edu.ifrs.poa.tcc.models.Aluno;
 import br.edu.ifrs.poa.tcc.models.Professor;
 import br.edu.ifrs.poa.tcc.repositories.AlunoRepository;
 import br.edu.ifrs.poa.tcc.repositories.ProfessorRepository;
-import br.edu.ifrs.poa.tcc.security.user.CadastroDto;
-import br.edu.ifrs.poa.tcc.security.user.Categoria;
-import br.edu.ifrs.poa.tcc.security.user.Papel;
-import br.edu.ifrs.poa.tcc.security.user.UsuarioLogado;
-import br.edu.ifrs.poa.tcc.security.user.repositories.PapelRepository;
-import br.edu.ifrs.poa.tcc.security.user.repositories.UsuarioLogadoRepository;
+import br.edu.ifrs.poa.tcc.security.user.*;
+import br.edu.ifrs.poa.tcc.security.user.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
@@ -69,14 +64,14 @@ public class UsuarioController {
             }
             if (cadastro.getCategoria() == Categoria.ALUNO){
                 List<Papel> papeis = this.papeis.findByGrupo(Categoria.ALUNO);
-                UsuarioLogado usuario = new UsuarioLogado(cadastro.getUsername(), new BCryptPasswordEncoder().encode(cadastro.getPassword()), papeis);
+                UsuarioLogado usuario = new UsuarioLogado(cadastro.getUsername(), new BCryptPasswordEncoder().encode(cadastro.getPassword()), papeis, Categoria.ALUNO);
                 Aluno aluno = new Aluno(cadastro.getNome(), cadastro.getEmail(), cadastro.getTelefone(), cadastro.getMatricula(), cadastro.getCpf());
 
                 this.usuarios.saveAndFlush(usuario);
                 this.alunos.saveAndFlush(aluno);
             } else if (cadastro.getCategoria() == Categoria.PROFESSOR){
                 List<Papel> papeis = this.papeis.findByGrupo(Categoria.PROFESSOR);
-                UsuarioLogado usuario = new UsuarioLogado(cadastro.getUsername(), new BCryptPasswordEncoder().encode(cadastro.getPassword()), papeis);
+                UsuarioLogado usuario = new UsuarioLogado(cadastro.getUsername(), new BCryptPasswordEncoder().encode(cadastro.getPassword()), papeis, Categoria.PROFESSOR);
                 Professor professor = new Professor(cadastro.getNome(), cadastro.getEmail(), cadastro.getTelefone(), cadastro.getMatricula(), cadastro.getCpf());
 
                 this.usuarios.saveAndFlush(usuario);
