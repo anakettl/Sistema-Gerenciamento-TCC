@@ -17,39 +17,39 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="resources/css/layoute.css">
     <title>Login</title>
 </head>
 <body>
 
-<form th:action="@{/login}" method="post" class="container">
-    <div class="form-group">
-        <label for="username">Username</label>
+<div class="wrap">
+<form th:action="@{/login}" method="post" class="col-lg-4 col-lg-offset-4 my_form">
+    <h2 class="text-center">Sign In</h2>
+        <label for="username" class="sr-only">Username</label>
         <input type="text" class="form-control" name="username" id="username" aria-describedby="usernameHelp" placeholder="Username">
         <small id="usernameHelp" class="form-text text-muted">Nunca compartilhe seu username com ninguém.</small>
-    </div>
-    <div class="form-group">
-        <label for="password">Password</label>
+
+
+        <label for="password" class="sr-only">Password</label>
         <input type="password" class="form-control" name="password" id="password" placeholder="Password">
-    </div>
-    <div class="form-group form-check" th:if="${remember}">
-        <input type="checkbox" class="form-check-input" id="remember">
-        <label class="form-check-label" for="remember">Lembre-me</label>
-    </div>
+
 
     <div class="container">
-        <div class="row">
-            <div class="col-sm">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <a class="btn btn-danger" th:href="@{/}">Cancelar</a>
+
+            <div class="col-sm center-block">
+                <button type="submit" class="btn btn-lg btn-primary btn-block">Submit</button>
+                <a class="btn btn-lg btn-danger btn-block" th:href="@{/}">Cancelar</a>
             </div>
             <div class="col-sm">
                 <div class="alert alert-danger" role="alert" th:if="${param.error}">Nome ou Senha inválidos!</div>
                 <div class="alert alert-success" role="alert" th:if="${message}"><p th:text="${message}"></p></div>
             </div>
-        </div>
+
     </div>
 
 </form>
+
+</div>
 
 </body>
 </html>
