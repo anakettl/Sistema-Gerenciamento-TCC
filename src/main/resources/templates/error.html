@@ -1,21 +1,21 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 
-<html lang="pt" xmlns:th="https://www.thymeleaf.org" 
-th:replace="~{fragments/layout :: layout (~{::body},'home')}">
-	<head>
-		<title>Welcome</title>
-	</head>
-	
-  <body>
+<html lang="pt" xmlns:th="https://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},'home')}">
+<head>
+    <title>Welcome</title>
+</head>
 
-    <h2>Error</h2>
-    
-    <div class="row">
-        <div class="col-md-12">
-          <img alt="imagem de foca" class="img" th:src="@{/resources/images/error.png}"/>
-        </div>
+<body>
+
+<h2>Error</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <img alt="imagem de foca" class="img" th:src="@{/resources/images/error.png}"/>
     </div>
+</div>
 
-  </body>
+</body>
 
 </html>
