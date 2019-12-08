@@ -9,9 +9,6 @@ import java.io.Serializable;
 public class Pessoa implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	protected Integer id;
 
 	@NotBlank(message = "Nome obrigatório")
 	@Column(length = 55, nullable = false)
@@ -45,14 +42,6 @@ public class Pessoa implements Serializable {
 		this.cpf = cpf;
 	}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
 	public String getNome() {
 		return nome;
 	}
@@ -81,14 +70,9 @@ public class Pessoa implements Serializable {
 		return cpf;
 	}
 
-	public boolean isNew() {
-		return this.id == null;
-	}
-
 	@Override
 	public String toString() {
 		return "Pessoa{" +
-				"id=" + id +
 				", nome='" + nome + '\'' +
 				", email='" + email + '\'' +
 				", telefone='" + telefone + '\'' +
