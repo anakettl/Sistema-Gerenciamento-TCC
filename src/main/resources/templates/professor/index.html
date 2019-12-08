@@ -15,14 +15,14 @@ th:replace="~{fragments/layout :: layout (~{::body},'professor')}">
     
     <p>Veja a lista de professores:</p>
     
-    <div th:if="${mensagem}"></div>
+    <div th:if="${#messages}"></div>
     
     <a type="button" th:href="@{/professores/create}">Criar</a>
-    
-    
-	<table>
+
+
+	<table th:summary="Tabela da lista dos professores">
 		<thead>
-		<tr>
+		<tr th:scope="">
 			<th>NOME</th>
 			<th>EMAIL</th>
 			<th>MATRICULA</th>
@@ -53,8 +53,8 @@ th:replace="~{fragments/layout :: layout (~{::body},'professor')}">
 		</tr>
 		</tbody>
 	</table>
-	
-	
+
+
 
 </div>
 	

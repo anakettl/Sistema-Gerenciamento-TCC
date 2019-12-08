@@ -21,11 +21,11 @@ th:replace="~{fragments/layout :: layout (~{::body},'aluno')}">
 	<table>
 		<thead>
 		<tr>
-			<th>NOME</th>
-			<th>EMAIL</th>
-			<th>MATRICULA</th>
-			<th>CPF</th>
-			<th>TELEFONE</th>
+			<th th:id="nome">NOME</th>
+			<th th:id="email">EMAIL</th>
+			<th th:id="matricula">MATRICULA</th>
+			<th th:id="cpf">CPF</th>
+			<th th:id="telefone">TELEFONE</th>
 		</tr>
 		</thead>
 		<tbody>

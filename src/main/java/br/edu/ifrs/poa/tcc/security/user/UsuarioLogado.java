@@ -82,11 +82,4 @@ public class UsuarioLogado implements UserDetails {
 				", papeis=" + papeis +
 				'}';
 	}
-
-	public boolean isRole(Categoria role) {
-		if (this.papeis.contains(role)){
-			return true;
-		}
-		return false;
-	}
 }

@@ -1,16 +1,9 @@
 package br.edu.ifrs.poa.tcc.models;
 
-import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-
-import org.hibernate.validator.constraints.br.CPF;
+import java.io.Serializable;
 
 @MappedSuperclass
 public class Pessoa implements Serializable {
@@ -72,19 +65,10 @@ public class Pessoa implements Serializable {
 		return email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
 	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
-	
 	public String getMatricula() {
 		return matricula;
 	}
@@ -97,10 +81,6 @@ public class Pessoa implements Serializable {
 		return cpf;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-	
 	public boolean isNew() {
 		return this.id == null;
 	}
