@@ -1,119 +1,96 @@
 package br.edu.ifrs.poa.tcc.models;
 
-import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-
-import org.hibernate.validator.constraints.br.CPF;
+import java.io.Serializable;
 
 @MappedSuperclass
 public class Pessoa implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	protected Integer id;
+    @NotBlank(message = "Nome obrigatório")
+    @Column(length = 55, nullable = false)
+    protected String nome;
 
-	@NotBlank(message = "Nome obrigatório")
-	@Column(length = 55, nullable = false)
-	protected String nome;
+    @NotBlank(message = "Email obrigatório")
+    @Email(message = "Email inválido")
+    @Column(length = 80, nullable = false)
+    protected String email;
 
-	@NotBlank(message = "Email obrigatório")
-	@Email(message = "Email inválido")
-	@Column(length = 80, nullable = false)
-	protected String email;
-	
-	@NotBlank(message = "Telefone obrigatório")
-	@Column(length = 30)
-	protected String telefone;
-	
-	@NotBlank(message = "Matrícula obrigatória")
-	@Column(length = 80, nullable = false)
-	protected String matricula;
-	
-	@NotBlank(message = "CPF obrigatório")
-	@Column(length = 80, nullable = false)
-	protected String cpf;
-	
-	public Pessoa() {
-		
-	}
-	public Pessoa(String nome, String email, String telefone, String matricula, String cpf) {
-		this.nome = nome;
-		this.email = email;
-		this.telefone = telefone;
-		this.matricula = matricula;
-		this.cpf = cpf;
-	}
+    @NotBlank(message = "Telefone obrigatório")
+    @Column(length = 30)
+    protected String telefone;
 
-	public Integer getId() {
-		return id;
-	}
+    @NotBlank(message = "Matrícula obrigatória")
+    @Column(length = 80, nullable = false)
+    protected String matricula;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    @NotBlank(message = "CPF obrigatório")
+    @Column(length = 80, nullable = false)
+    protected String cpf;
 
-	public String getNome() {
-		return nome;
-	}
+    public Pessoa() {
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public Pessoa(String nome, String email, String telefone, String matricula, String cpf) {
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.matricula = matricula;
+        this.cpf = cpf;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-	public String getTelefone() {
-		return telefone;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	
-	public String getMatricula() {
-		return matricula;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setMatricula(String matricula) {
-		this.matricula = matricula;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getCpf() {
-		return cpf;
-	}
+    public String getTelefone() {
+        return telefone;
+    }
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-	
-	public boolean isNew() {
-		return this.id == null;
-	}
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
 
-	@Override
-	public String toString() {
-		return "Pessoa{" +
-				"id=" + id +
-				", nome='" + nome + '\'' +
-				", email='" + email + '\'' +
-				", telefone='" + telefone + '\'' +
-				", matricula='" + matricula + '\'' +
-				", cpf='" + cpf + '\'' +
-				'}';
-	}
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    @Override
+    public String toString() {
+        return "Pessoa{" +
+                ", nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", matricula='" + matricula + '\'' +
+                ", cpf='" + cpf + '\'' +
+                '}';
+    }
 }

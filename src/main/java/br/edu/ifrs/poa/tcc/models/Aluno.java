@@ -1,44 +1,50 @@
 package br.edu.ifrs.poa.tcc.models;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "alunos") // nome de tabela deve ser o nome da classe no plural em letras minusculas
+@SequenceGenerator(name = "SEQUENCE_ALUNO", initialValue = 1, allocationSize = 1)
 public class Aluno extends Pessoa {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	private Proposta proposta;
+    @Id
+    @GeneratedValue(generator = "SEQUENCE_ALUNO", strategy = GenerationType.TABLE)
+    private Integer id;
 
-	public Aluno() {
+    @OneToOne(cascade = CascadeType.ALL)
+    private Proposta proposta;
 
-	}
+    public Aluno() {
 
-	public Aluno(String nome, String email, String telefone, String matricula, String cpf) {
-		super(nome, email, telefone, matricula, cpf);
-	}
+    }
 
-	public Proposta getProposta() {
-		return proposta;
-	}
+    public Aluno(String nome, String email, String telefone, String matricula, String cpf) {
+        super(nome, email, telefone, matricula, cpf);
+    }
 
-	public void setProposta(Proposta proposta) {
-		this.proposta = proposta;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	@Override
-	public String toString() {
-		return "Aluno{" +
-				"proposta=" + proposta +
-				", id=" + id +
-				", nome='" + nome + '\'' +
-				", email='" + email + '\'' +
-				", telefone='" + telefone + '\'' +
-				", matricula='" + matricula + '\'' +
-				", cpf='" + cpf + '\'' +
-				'}';
-	}
+    public Proposta getProposta() {
+        return proposta;
+    }
+
+    public void setProposta(Proposta proposta) {
+        this.proposta = proposta;
+    }
+
+    @Override
+    public String toString() {
+        return "Aluno{" +
+                "proposta=" + proposta +
+                ", id=" + id +
+                ", nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", matricula='" + matricula + '\'' +
+                ", cpf='" + cpf + '\'' +
+                '}';
+    }
 }

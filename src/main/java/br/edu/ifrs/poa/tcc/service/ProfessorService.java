@@ -11,7 +11,7 @@ import br.edu.ifrs.poa.tcc.repositories.ProfessorRepository;
 
 @Service
 public class ProfessorService {
-	
+
 	@Autowired
 	private ProfessorRepository professores;
 
@@ -19,7 +19,9 @@ public class ProfessorService {
 		super();
 		this.professores = professores;
 	}
-	
+    public List<Professor> pegarProfessores() {
+        return professores.findAll();
+    }
 	//CREATE
 	public void salvar(Professor professor){
 		try {
@@ -28,7 +30,7 @@ public class ProfessorService {
 			throw new ServiceException("Nao foi possivel salvar novo professor", exception);
 		}
 	}
-	
+
 	//READ
 	public Professor professor(Integer id){
 		try {
@@ -39,7 +41,7 @@ public class ProfessorService {
 			throw new ServiceException("Erro, ", exception);
 		}
 	}
-		
+
 	//UPDATE
 	public void atualizar(Professor professor){
 		try {
@@ -48,7 +50,7 @@ public class ProfessorService {
 			throw new ServiceException("Nao foi possivel salvar novo professor", exception);
 		}
 	}
-	
+
 	//DELETE
 		public void excluir(Integer id){
 			try {
@@ -59,7 +61,7 @@ public class ProfessorService {
 				throw new ServiceException("Nao foi possivel excluir o professor", exception);
 			}
 		}
-	
+
 	//ALL
 	public List<Professor> todos(){
 		try {
@@ -68,7 +70,7 @@ public class ProfessorService {
 			throw new ServiceException("Nao foi possivel buscar todos professores", exception);
 		}
 	}
-	
+
 	//DELETE ALL
 	public void excluirTodos(List<Professor> lista){
 		try {
@@ -77,6 +79,6 @@ public class ProfessorService {
 			throw new ServiceException("Nao foi possivel buscar todos professores", exception);
 		}
 	}
-	
-	
+
+
 }

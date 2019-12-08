@@ -1,25 +1,25 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 
-<html lang="pt" xmlns:th="https://www.thymeleaf.org" 
-th:replace="~{fragments/layout :: layout (~{::body},'professor')}">
-	<head>
-		<title>Professor</title>
-		<meta charset="UTF-8">
-	</head>
-	
-  <body>
+<html lang="pt" xmlns:th="https://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},'professor')}">
+<head>
+    <title>Professor</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
 
 	<div class="container-fluid">
-	
+
 	<h2>Professor</h2>
-    
+
     <p>Veja a lista de professores:</p>
-    
+
     <div th:if="${mensagem}"></div>
-    
+
     <a type="button" th:href="@{/professores/create}">Criar</a>
-    
-    
+
+
 	<table>
 		<thead>
 		<tr>
@@ -57,7 +57,7 @@ th:replace="~{fragments/layout :: layout (~{::body},'professor')}">
 	
 
 </div>
-	
-  </body>
+
+</body>
 
 </html>
