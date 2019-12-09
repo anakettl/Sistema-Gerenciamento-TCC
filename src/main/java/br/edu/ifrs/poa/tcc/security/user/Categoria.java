@@ -1,7 +1,7 @@
 package br.edu.ifrs.poa.tcc.security.user;
 
 public enum Categoria {
-    PROFESSOR("Professor"), ALUNO("Aluno"), ADMIN("Administrador");
+    PROFESSOR(Valores.PROFESSOR), ALUNO(Valores.ALUNO), ADMIN(Valores.ADMIN);
 
     private String descricao;
 
@@ -12,4 +12,11 @@ public enum Categoria {
     public String getDescricao() {
     	return this.descricao;
     }
+
+    public static class Valores {
+        static final String PROFESSOR = "PROFESSOR";
+        static final String ALUNO = "ALUNO";
+        static final String ADMIN = "ADMIN";
+    }
+
 }

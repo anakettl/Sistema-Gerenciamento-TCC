@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br"
-	  xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:th="https://www.thymeleaf.org"
-	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	  xmlns:sec="http://www.w3.org/1999/xhtml"
 	  th:fragment="layout (template, menu)">
 
 <head>
@@ -25,6 +24,8 @@
 	<link rel="stylesheet" th:href="@{/resources/bootstrap/css/bootstrap-reboot.css}">
 	<script th:src="@{/resources/bootstrap/js/bootstrap.js}"></script>
 	<script th:src="@{/resources/bootstrap/js/bootstrap.bundle.js}"></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 
 	<title>Gerenciamento TCC</title>
 
@@ -52,14 +53,8 @@
 			<li class="nav-item">
 				<a class="nav-link" th:href="@{/avaliacao}">Avaliacao</a>
 			</li>
-			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" th:href="@{/professores}" id="navbarDropdownMenuLink" role="button"
-				   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Professores</a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-					<a class="dropdown-item" th:href="@{/professores/create}">Action</a>
-					<a class="dropdown-item" href="#">Another action</a>
-					<a class="dropdown-item" href="#">Something else here</a>
-				</div>
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{/professores}">Professor</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link right" th:href="@{/alunos}">Aluno</a>
@@ -72,10 +67,17 @@
 				<a class="nav-link" th:href="@{/logout}">Sair</a>
 			</li>
 
-			<h1 class="nav-item" sec:authentication="username"></h1>
 		</ul>
 	</div>
 </nav>
+
+<div sec:authorize="isAuthenticated()">
+	Logado como: <span sec:authentication="name"></span>
+</div>
+
+<!--<div th:if="${#session.} == ">-->
+<!--	Logado como: <span th:authentication="name"></span>-->
+<!--</div>-->
 
 <div class="container">
 	<th:block th:include="${template}" />
