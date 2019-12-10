@@ -1,0 +1,55 @@
+ <!DOCTYPE html>
+
+<html lang="pt" xmlns:th="https://www.thymeleaf.org" 
+th:replace="~{fragments/layout :: layout (~{::body},'banca')}">
+	<head>
+		<title>Banca</title>
+		<meta charset="UTF-8">
+	</head>
+	
+  <body>
+
+    <h2>Bancas</h2>
+    
+    <p>Veja a lista de bancas:</p>
+    
+    <div th:if="${mensagem}"></div>
+    
+    <a type="button" th:href="@{/bancas/create}">Criar</a>
+    
+
+	<table>
+		<thead>
+		<tr>
+			<th>Autor</th>
+			<th>Orientador</th>
+			<th>Avaliador 1</th>
+			<th>Avaliador 2</th>
+			
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each="banca : ${bancas}">
+			<td>
+				<p th:text="${banca.autor}"></p>
+			</td>
+			<td>
+				<p th:text="${banca.orientador}"></p>
+			</td>
+			<td>
+				<p th:text="${banca.avaliador1}"></p>
+			</td>
+			<td>
+				<p th:text="${banca.avaliador2}"></p>
+			</td>
+			
+			<td>
+				<a th:href="@{/bancas/__${banca.id}__}"> Ver</a>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	
+  </body>
+
+</html>
