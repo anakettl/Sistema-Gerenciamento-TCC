@@ -1,21 +1,18 @@
 package br.edu.ifrs.poa.tcc.models;
 
-import javax.persistence.*;
-import javax.validation.constraints.Email;
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 @MappedSuperclass
 public class Pessoa implements Serializable {
-	private static final long serialVersionUID = 1L;
-
 
 	@NotBlank(message = "Nome obrigatório")
 	@Column(length = 55, nullable = false)
 	protected String nome;
 
 	@NotBlank(message = "Email obrigatório")
-	@Email(message = "Email inválido")
 	@Column(length = 80, nullable = false)
 	protected String email;
 	
@@ -54,8 +51,16 @@ public class Pessoa implements Serializable {
 		return email;
 	}
 
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getTelefone() {
 		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 	public String getMatricula() {
@@ -70,10 +75,14 @@ public class Pessoa implements Serializable {
 		return cpf;
 	}
 
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
 	@Override
 	public String toString() {
 		return "Pessoa{" +
-				", nome='" + nome + '\'' +
+				"nome='" + nome + '\'' +
 				", email='" + email + '\'' +
 				", telefone='" + telefone + '\'' +
 				", matricula='" + matricula + '\'' +

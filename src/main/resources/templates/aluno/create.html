@@ -16,22 +16,22 @@ th:replace="~{fragments/layout :: layout (~{::body},'alunos')}">
     	<input type="hidden" id="id" th:field="*{id}"/>
     	
     	<label>Matricula</label>
-    	<input id="matricula" th:field="*{matricula}"/>
+    	<input id="matricula" th:type="number" th:required="true" th:field="*{matricula}"/>
     	
     	<label>Nome</label>
-    	<input id="nome" th:field="*{nome}"/>
+    	<input id="nome" th:type="text" th:required="true" th:field="*{nome}"/>
     	
     	<label>Email</label>
-    	<input id="email" th:field="*{email}"/>
+    	<input id="email" th:type="email" th:required="true" th:field="*{email}"/>
     	
     	<label>CPF</label>
-    	<input id="cpf" th:field="*{cpf}"/>
+    	<input id="cpf" th:type="text" th:required="true" th:field="*{cpf}"/>
     	
     	<label>Telefone</label>
-    	<input id="telefone" th:field="*{telefone}"/>
+    	<input id="telefone" th:type="number" th:required="true" th:field="*{telefone}"/>
     	
     	<button th:if="${aluno.id} == null" type="submit">Enviar</button>
-    	<button th:if="${aluno.id} != null" onclick()="atualizar">Atualizar</button>
+    	<button th:if="${aluno.id} != null" type="submit">Atualizar</button>
 
 		<div th:if="${#fields.hasAnyErrors()}" th:each="err : ${#fields.errors()}">
 			<div class="alert alert-warning alert-dismissible fade show" role="alert">
