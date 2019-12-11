@@ -83,5 +83,19 @@ public class BancaController {
 		}
 	}
 	
+	@GetMapping("/delete/{id}")
+    public ModelAndView delete(@PathVariable("id") Integer id) {
+        ModelAndView model = new ModelAndView("redirect:/alunos");
+        try {
+        	this.bancas.excluir(id);
+            model.addObject("bancas", this.bancas.todos());
+            return model;
+        } catch (Exception exception) {
+            model.addObject("erro", exception.getMessage());
+            model.setViewName("bancas");
+            return model;
+        }
+    }
+	
 	
 }
