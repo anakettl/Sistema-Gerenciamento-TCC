@@ -82,4 +82,18 @@ public class ProfessorController {
 			return model;
 		}
 	}
+	
+	@GetMapping("/delete/{id}")
+    public ModelAndView delete(@PathVariable("id") Integer id) {
+        ModelAndView model = new ModelAndView("redirect:/professores");
+        try {
+        	this.professores.excluir(id);
+            model.addObject("professores", this.professores.todos());
+            return model;
+        } catch (Exception exception) {
+            model.addObject("erro", exception.getMessage());
+            model.setViewName("professores");
+            return model;
+        }
+    }
 }
