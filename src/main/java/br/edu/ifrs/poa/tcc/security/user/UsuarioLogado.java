@@ -1,13 +1,14 @@
 package br.edu.ifrs.poa.tcc.security.user;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.stream.Stream;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import static java.util.stream.Collectors.toSet;
 
 @Entity
 @Table(name = "usuario")
@@ -25,14 +26,13 @@ public class UsuarioLogado implements UserDetails {
 	@Column(nullable = false)
 	private String password;
 
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_user")
-	private List<Papel> papeis = new ArrayList<>();
+	@Enumerated(EnumType.STRING)
+	private Categoria papeis;
 
 	public UsuarioLogado() {
 	}
 
-	public UsuarioLogado(String username, String password, List<Papel> papeis) {
+	public UsuarioLogado(String username, String password, Categoria papeis) {
 		this.username = username;
 		this.password = password;
 		this.papeis = papeis;
@@ -40,7 +40,10 @@ public class UsuarioLogado implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return this.papeis;
+		Collection<GrantedAuthority> permissoes = Stream
+				.of(new SimpleGrantedAuthority(this.papeis.getDescricao()))
+				.collect(toSet());
+		return permissoes;
 	}
 
 	@Override
@@ -73,4 +76,13 @@ public class UsuarioLogado implements UserDetails {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "UsuarioLogado{" +
+				"id=" + id +
+				", username='" + username + '\'' +
+				", password='" + password + '\'' +
+				", papeis=" + papeis +
+				'}';
+	}
 }

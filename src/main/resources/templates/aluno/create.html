@@ -1,44 +1,49 @@
 <!DOCTYPE html>
 
-<html lang="pt" xmlns:th="https://www.thymeleaf.org"
-      th:replace="~{fragments/layout :: layout (~{::body},'alunos', )}">
-<head>
-    <title>Aluno</title>
-</head>
+<html lang="pt" xmlns:th="https://www.thymeleaf.org" 
+th:replace="~{fragments/layout :: layout (~{::body},'alunos')}">
+	<head>
+		<title>Aluno</title>
+	</head>
+	
+  <body>
 
-<body>
+    <h2 th:if="${aluno.id} != null" >Dados do Aluno:</h2>
+    <h2 th:if="${aluno.id} == null" >Novo Aluno</h2>
+    
+    <form th:action="@{/alunos/create}" th:method="post" th:object="${aluno}">
+    	
+    	<input type="hidden" id="id" th:field="*{id}"/>
+    	
+    	<label>Matricula</label>
+    	<input id="matricula" th:field="*{matricula}"/>
+    	
+    	<label>Nome</label>
+    	<input id="nome" th:field="*{nome}"/>
+    	
+    	<label>Email</label>
+    	<input id="email" th:field="*{email}"/>
+    	
+    	<label>CPF</label>
+    	<input id="cpf" th:field="*{cpf}"/>
+    	
+    	<label>Telefone</label>
+    	<input id="telefone" th:field="*{telefone}"/>
+    	
+    	<button th:if="${aluno.id} == null" type="submit">Enviar</button>
+    	<button th:if="${aluno.id} != null" onclick()="atualizar">Atualizar</button>
 
-<h2 th:if="${aluno.id} != null">Dados do Aluno:</h2>
-<h2 th:if="${aluno.id} == null">Novo Aluno</h2>
-
-<form th:action="@{/alunos/create}" th:method="post" th:object="${aluno}">
-
-    <input type="hidden" id="id" th:field="*{id}"/>
-
-    <label>Matricula</label>
-    <input id="matricula" th:field="*{matricula}"/>
-
-    <label>Nome</label>
-    <input id="nome" th:field="*{nome}"/>
-
-    <label>Email</label>
-    <input id="email" th:field="*{email}"/>
-
-    <label>CPF</label>
-    <input id="cpf" th:field="*{cpf}"/>
-
-    <label>Telefone</label>
-    <input id="telefone" th:field="*{telefone}"/>
-
-    <button th:if="${aluno.id} == null" type="submit">Enviar</button>
-    <button th:if="${aluno.id} != null" onclick()="atualizar">Atualizar</button>
-
-    <div th:if="${#fields.hasAnyErrors()}" class="row" id="alert_box">
-        <p th:each="err : ${#fields.allErrors()}" th:text="${err}"></p>
-    </div>
-
-</form>
-
-</body>
+		<div th:if="${#fields.hasAnyErrors()}" th:each="err : ${#fields.errors()}">
+			<div class="alert alert-warning alert-dismissible fade show" role="alert">
+				<strong th:text="${err}"></strong>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		</div>
+    	
+    </form>
+	
+  </body>
 
 </html>

@@ -1,5 +1,6 @@
 package br.edu.ifrs.poa.tcc.security;
 
+import br.edu.ifrs.poa.tcc.security.user.Categoria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -27,13 +28,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/login", "/resources/**", "/h2/**", "/signup", "/").permitAll()
-//                .antMatchers("/professores").hasRole("ADMIN")
-//                .antMatchers("/alunos").hasRole("ADMIN")
-                .anyRequest().authenticated()
-                .and()
-                .exceptionHandling()
-                .accessDeniedPage("/negado")
+                .antMatchers("/login", "/resources/**", "/webjars/**", "/h2/**", "/signup", "/")
+                .permitAll()
+                .anyRequest()
+                .authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -49,5 +47,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().ignoringAntMatchers("/h2/**");
         http.headers().frameOptions().sameOrigin();
     }
+
 
 }

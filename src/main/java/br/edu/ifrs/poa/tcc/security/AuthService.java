@@ -13,19 +13,15 @@ import java.util.Optional;
 @Service
 public class AuthService implements UserDetailsService {
 
-    @Autowired
-    UsuarioLogadoRepository repositorio;
+	@Autowired
+	UsuarioLogadoRepository repositorio;
 
-    @Override
-    public UserDetails loadUserByUsername(String user) {
-        Optional<UsuarioLogado> usuario = repositorio.findByUsername(user);
-        if (usuario.isPresent()) {
-            return usuario.get();
-        } else {
-            throw new UsernameNotFoundException("Dados Inválidos");
-        }
-    }
-
+	@Override
+	public UserDetails loadUserByUsername(String user){
+		Optional<UsuarioLogado> usuario = repositorio.findByUsername(user);
+		if(usuario.isPresent())	{return usuario.get();}
+		else {throw new UsernameNotFoundException("Dados Inválidos");}
+	}
 
 }
 

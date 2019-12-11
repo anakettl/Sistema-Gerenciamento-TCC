@@ -3,7 +3,7 @@ package br.edu.ifrs.poa.tcc.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "alunos") // nome de tabela deve ser o nome da classe no plural em letras minusculas
+@Table(name = "alunos")
 @SequenceGenerator(name = "SEQUENCE_ALUNO", initialValue = 1, allocationSize = 1)
 public class Aluno extends Pessoa {
     private static final long serialVersionUID = 1L;

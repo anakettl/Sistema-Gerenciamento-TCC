@@ -14,8 +14,8 @@
 	<h2>Professor</h2>
 
     <p>Veja a lista de professores:</p>
-
-    <div th:if="${mensagem}"></div>
+    
+    <div th:if="${#messages}"></div>
 
     <a type="button" th:href="@{/professores/create}">Criar</a>
 
@@ -53,8 +53,6 @@
 		</tr>
 		</tbody>
 	</table>
-	
-	
 
 </div>
 
