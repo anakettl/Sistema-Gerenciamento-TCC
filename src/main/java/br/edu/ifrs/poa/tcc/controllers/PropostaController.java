@@ -1,9 +1,12 @@
 package br.edu.ifrs.poa.tcc.controllers;
 
+import br.edu.ifrs.poa.tcc.models.Professor;
 import br.edu.ifrs.poa.tcc.models.Proposta;
 import br.edu.ifrs.poa.tcc.service.AlunoService;
 import br.edu.ifrs.poa.tcc.service.ProfessorService;
 import br.edu.ifrs.poa.tcc.service.PropostaService;
+import br.edu.ifrs.poa.tcc.service.ServiceException;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -71,11 +76,21 @@ public class PropostaController {
             return model;
         }
     }
-    @PostMapping("/{id}/excluir")
-    public String remover(@PathVariable("id") Integer id) {
-        propostaService.remover(id);
-
-        return "redirect:/propostas";
+    
+    @GetMapping("/delete/{id}")
+    public ModelAndView delete(@PathVariable("id") Integer id) {
+        ModelAndView model = new ModelAndView("redirect:/propostas");
+        try {
+        	this.propostaService.excluir(id);
+            model.addObject("propostas", this.propostaService.todos());
+            return model;
+        } catch (Exception exception) {
+            model.addObject("erro", exception.getMessage());
+            model.setViewName("propostas");
+            return model;
+        }
     }
+    
+    
 
 }
