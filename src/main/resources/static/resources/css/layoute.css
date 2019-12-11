@@ -27,7 +27,7 @@ body{
 }
 
 .wrap {
-    display: center;
+    display: block;
     flex-direction: row;
 }
 

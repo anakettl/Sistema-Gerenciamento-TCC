@@ -17,19 +17,19 @@
         <input type="hidden" id="id" th:field="*{id}"/>
 
         <label for="matricula">Matricula</label>
-        <input id="matricula" th:field="*{matricula}"/>
+        <input id="matricula" th:type="number" th:required="true" th:field="*{matricula}"/>
 
         <label for="nome">Nome</label>
-        <input id="nome" th:field="*{nome}"/>
+        <input id="nome" th:type="text" th:required="true" th:field="*{nome}"/>
 
         <label for="email">Email</label>
-        <input id="email" th:field="*{email}"/>
+        <input id="email" th:type="email" th:required="true" th:field="*{email}"/>
 
         <label for="cpf">CPF</label>
-        <input id="cpf" th:field="*{cpf}"/>
+        <input id="cpf" th:type="text" th:required="true" th:field="*{cpf}"/>
 
         <label for="telefone">Telefone</label>
-        <input id="telefone" th:field="*{telefone}"/>
+        <input id="telefone" th:type="number" th:required="true" th:field="*{telefone}"/>
 
         <button th:if="${professor.id} == null" type="submit">Enviar</button>
         <button th:if="${professor.id} != null" type="submit">Atualizar</button>

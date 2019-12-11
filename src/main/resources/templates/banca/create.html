@@ -9,20 +9,21 @@
 <body>
 
 
-<h2 th:if="${banca.id} == null">Novo Banca</h2>
+<h2 th:if="${banca.id} == null">Nova Banca</h2>
+<h2 th:if="${banca.id} != null">Dados da Banca</h2>
 
 <form th:action="@{/banca/create}" th:method="post" th:object="${banca}">
 
     <input id="id" th:field="*{id}" type="hidden"/>
 
     <label>Avaliador 01</label>
-    <input id="avaliador_1" th:field="*{matricula}"/>
+    <input id="avaliador_1" th:field="*{avaliador1}"/>
 
     <label>Avaliador 02</label>
-    <input id="avaliador_2" th:field="*{matricula}"/>
+    <input id="avaliador_2" th:field="*{avaliador2}"/>
 
     <label>Orientador</label>
-    <input id="orientador" th:field="*{matricula}"/>
+    <input id="orientador" th:field="*{orientador}"/>
 
 
     <button type="submit">Enviar</button>

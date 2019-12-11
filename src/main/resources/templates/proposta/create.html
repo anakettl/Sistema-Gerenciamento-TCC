@@ -13,7 +13,7 @@
     <form th:action="@{/propostas/create}" method="post" th:object="${proposta}">
 
         <label>Título</label>
-        <input type="text" name="titulo" th:field="*{titulo}"/> <br/>
+        <input th:type="text" th:required="true" name="titulo" th:field="*{titulo}"/> <br/>
 
         <div class="form-group col-md-6">
             <label>Professores</label>
