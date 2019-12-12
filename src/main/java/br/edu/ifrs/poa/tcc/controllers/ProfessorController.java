@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import br.edu.ifrs.poa.tcc.repositories.TitulacaoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,7 +22,10 @@ import br.edu.ifrs.poa.tcc.service.ProfessorService;
 @Controller
 @RequestMapping(value = "/professores")
 public class ProfessorController {
-	
+
+	@Autowired
+	private TitulacaoRepository titulacoes;
+
 	private ProfessorService professores;
 
 	public ProfessorController(ProfessorService professores) {
@@ -33,6 +38,7 @@ public class ProfessorController {
 		ModelAndView model = new ModelAndView("professor/create");
 		try {
 			model.addObject("professor", professor);
+			model.addObject("titulacoes", this.titulacoes.findAll());
 			return model;
 		} catch (Exception exception) {
 			model.addObject("erro", exception.getMessage());

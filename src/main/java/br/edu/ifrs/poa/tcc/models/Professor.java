@@ -8,26 +8,7 @@ import javax.persistence.*;
 @Table(name = "professores")
 @SequenceGenerator(name = "SEQUENCE_PROFESSOR", initialValue = 1, allocationSize = 1)
 public class Professor extends Pessoa{
-
 	private static final long serialVersionUID = 1L;
-
-	public Professor() {
-
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public Professor(String nome, String email, String telefone, String matricula, String cpf) {
-		super(nome, email, telefone, matricula, cpf);
-	}
-
-	public Professor(Titulacao titulo, List<SugestaoProjeto> sugestaoProjeto) {
-		super();
-		this.titulo = titulo;
-		this.sugestaoProjeto = sugestaoProjeto;
-	}
 
 	@Id
 	@GeneratedValue(generator = "SEQUENCE_PROFESSOR", strategy = GenerationType.TABLE)
@@ -41,6 +22,24 @@ public class Professor extends Pessoa{
 
 	@OneToMany
 	private List<AreaInteresse> areaInteresse;
+
+	public Professor() {
+
+	}
+
+	public Professor(String nome, String email, String telefone, String matricula, String cpf) {
+		super(nome, email, telefone, matricula, cpf);
+	}
+
+	public Professor(Titulacao titulo, List<SugestaoProjeto> sugestaoProjeto) {
+		super();
+		this.titulo = titulo;
+		this.sugestaoProjeto = sugestaoProjeto;
+	}
+
+	public Integer getId() {
+		return id;
+	}
 
 	public Titulacao getTitulo() {
 		return titulo;
