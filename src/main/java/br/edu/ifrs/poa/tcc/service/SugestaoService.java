@@ -23,21 +23,10 @@ public class SugestaoService {
         return sugestoes.findAll();
     }
     
-    
+    //CREATE
     public Sugestao salvar(Sugestao sugestao) {
         return sugestoes.save(sugestao);
     }
-
-    
-    
-//	//CREATE
-//	public void salvar(Sugestao sugestao){
-//		try {
-//			this.sugestoes.saveAndFlush(sugestao);
-//		} catch (Exception exception) {
-//			throw new ServiceException("Nao foi possivel salvar novo sugestao", exception);
-//		}
-//	}
 
 	//READ
 	public Sugestao sugestao(Integer id){

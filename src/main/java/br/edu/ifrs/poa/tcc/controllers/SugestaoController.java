@@ -42,13 +42,12 @@ public class SugestaoController {
 	}
 	
 	@PostMapping("/create")
-    public ModelAndView salvarSugestao(@Valid Sugestao sugestao, BindingResult resultadoValidacao, Model model, RedirectAttributes redirecionamentoDeAtributos) {
+    public ModelAndView salvarSugestao(@Valid Sugestao sugestao, BindingResult resultadoValidacao, RedirectAttributes redirecionamentoDeAtributos, Model model) {
         if (resultadoValidacao.hasErrors()) {
             model.addAttribute("erros", resultadoValidacao.getAllErrors());
             return viewSalvar(sugestao);
         }
         sugestoes.salvar(sugestao);
-
         redirecionamentoDeAtributos.addFlashAttribute("mensagem", "Proposta criada com sucesso!");
         return new ModelAndView("redirect:/sugestoes");
     }
