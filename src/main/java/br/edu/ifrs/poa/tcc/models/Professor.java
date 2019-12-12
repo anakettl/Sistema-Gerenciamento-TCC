@@ -23,10 +23,10 @@ public class Professor extends Pessoa{
 		super(nome, email, telefone, matricula, cpf);
 	}
 
-	public Professor(Titulacao titulo, List<SugestaoProjeto> sugestaoProjeto) {
+	public Professor(Titulacao titulo, List<Sugestao> sugestao) {
 		super();
 		this.titulo = titulo;
-		this.sugestaoProjeto = sugestaoProjeto;
+		this.sugestao = sugestao;
 	}
 
 	@Id
@@ -37,7 +37,7 @@ public class Professor extends Pessoa{
 	private Titulacao titulo;
 
 	@OneToMany
-	private List<SugestaoProjeto> sugestaoProjeto;
+	private List<Sugestao> sugestao;
 
 	@OneToMany
 	private List<AreaInteresse> areaInteresse;
@@ -50,12 +50,12 @@ public class Professor extends Pessoa{
 		this.titulo = titulo;
 	}
 
-	public List<SugestaoProjeto> getSugestaoProjeto() {
-		return sugestaoProjeto;
+	public List<Sugestao> getsugestao() {
+		return sugestao;
 	}
 
-	public void setSugestaoProjeto(List<SugestaoProjeto> sugestaoProjeto) {
-		this.sugestaoProjeto = sugestaoProjeto;
+	public void setSugestaoProjeto(List<Sugestao> sugestao) {
+		this.sugestao = sugestao;
 	}
 
 

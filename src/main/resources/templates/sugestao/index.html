@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html lang="pt" xmlns:th="https://www.thymeleaf.org" 
+th:replace="~{fragments/layout :: layout (~{::body},'sugestao')}">
+	<head>
+		<title>Sugestao</title>
+		<meta charset="UTF-8">
+	</head>
+	
+  <body>
+
+    <h2>Sugestoes</h2>
+    
+    <p>Veja a lista de sugestoes:</p>
+    
+    <div th:if="${#messages}"></div>
+    
+    <a type="button" th:href="@{/sugestoes/create}">Criar</a>
+    
+
+	<table>
+		<thead>
+		<tr>
+			<th th:id="titulo">TITULO</th>
+			<th th:id="professor">PROFESSOR</th>
+			<th th:id="pesquisa">PESQUISA IFRS</th>
+			<th th:id="descricao">DESCRIÇÃO</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each="sugestao : ${sugestoes}">
+			<td>
+				<p th:text="${sugestao.titulo}"></p>
+			</td>
+			<td>
+				<p th:text="${sugestao.orientador.nome}"></p>
+			</td>
+			<td>
+				<p th:text="${sugestao.pesquisa}"></p>
+			</td>
+			<td>
+				<p th:text="${sugestao.descricao}"></p>
+			</td>
+			<td>
+				<a th:href="@{/sugestoes/__${sugestao.id}__}"> Ver</a>
+			</td>
+			
+		</tr>
+		</tbody>
+	</table>
+	
+  </body>
+
+</html>
