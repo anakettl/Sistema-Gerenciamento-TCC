@@ -68,7 +68,7 @@ public class AlunoController {
         }
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ModelAndView ver(@PathVariable("id") Integer id) {
         ModelAndView model = new ModelAndView("aluno/create");
         try {
@@ -77,12 +77,12 @@ public class AlunoController {
             return model;
         } catch (Exception exception) {
             model.addObject("erro", exception.getMessage());
-            model.setViewName("alunos");
+            model.setViewName("aluno/index");
             return model;
         }
     }
     
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ModelAndView delete(@PathVariable("id") Integer id) {
         ModelAndView model = new ModelAndView("redirect:/alunos");
         try {

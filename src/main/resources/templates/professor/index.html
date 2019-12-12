@@ -9,53 +9,41 @@
 
 <body>
 
-	<div class="container-fluid">
+	<br class="container-fluid"/>
 
-	<h2>Professor</h2>
+	<h2 class="text-center">Professor</h2>
 
-    <p>Veja a lista de professores:</p>
+    <p class="text-center">Veja a lista de professores:</p>
     
     <div th:if="${#messages}"></div>
 
-    <a type="button" th:href="@{/professores/create}">Criar</a>
+	<div class="row-cols-3">
+		<a th:href="@{/professores/create}" class="btn btn-primary btn-lg">Criar</a>
+	</div>
 
+	<br class="container-fluid"/>
 
-	<table>
-		<thead>
-		<tr>
-			<th>NOME</th>
-			<th>EMAIL</th>
-			<th>MATRICULA</th>
-			<th>CPF</th>
-			<th>TELEFONE</th>
-		</tr>
-		</thead>
-		<tbody>
-		<tr th:each="professor : ${professores}">
-			<td>
-				<p th:text="${professor.nome}"></p>
-			</td>
-			<td>
-				<p th:text="${professor.email}"></p>
-			</td>
-			<td>
-				<p th:text="${professor.matricula}"></p>
-			</td>
-			<td>
-				<p th:text="${professor.cpf}"></p>
-			</td>
-			<td>
-				<p th:text="${professor.telefone}"></p>
-			</td>
-			<td>
-				<a th:href="@{/professores/__${professor.id}__}"> Ver</a>
-				<a th:href="@{/professores/delete/__${professor.id}__}"> Excluir</a>
-			</td>
-		</tr>
-		</tbody>
-	</table>
-
-</div>
+<table class="table table-hover table-dark">
+			<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Nome</th>
+				<th scope="col">Email</th>
+				<th scope="col">Matricula</th>
+				<th scope="col"></th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:each="professor, count : ${professores}">
+				<th scope="row" th:text="${count.count}"></th>
+				<td><p th:text="${professor.nome}"></p></td>
+				<td><p th:text="${professor.email}"></td>
+				<td><p th:text="${professor.matricula}"></td>
+				<td><a th:href="@{/professores/__${professor.id}__}" class="btn btn-outline-success">Visualizar</a></td>
+				<td><a th:action="@{/professores/__${professor.id}__}" th:method="delete" class="btn btn-outline-danger">Excluir</a></td>
+			</tr>
+			</tbody>
+		</table>
 
 </body>
 

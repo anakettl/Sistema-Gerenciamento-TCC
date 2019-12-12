@@ -4,13 +4,12 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import br.edu.ifrs.poa.tcc.repositories.TitulacaoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -20,7 +19,10 @@ import br.edu.ifrs.poa.tcc.service.ProfessorService;
 @Controller
 @RequestMapping(value = "/professores")
 public class ProfessorController {
-	
+
+	@Autowired
+	private TitulacaoRepository titulacoes;
+
 	private ProfessorService professores;
 
 	public ProfessorController(ProfessorService professores) {
@@ -33,10 +35,11 @@ public class ProfessorController {
 		ModelAndView model = new ModelAndView("professor/create");
 		try {
 			model.addObject("professor", professor);
+			model.addObject("titulacoes", this.titulacoes.findAll());
 			return model;
 		} catch (Exception exception) {
 			model.addObject("erro", exception.getMessage());
-			model.setViewName("professores");
+			model.setViewName("professor/index");
 			return model;
 		}
 	}
@@ -78,22 +81,22 @@ public class ProfessorController {
 			return model;
 		} catch (Exception exception) {
 			model.addObject("erro", exception.getMessage());
-			model.setViewName("professores");
+			model.setViewName("professor/index");
 			return model;
 		}
 	}
-	
-	@GetMapping("/delete/{id}")
-    public ModelAndView delete(@PathVariable("id") Integer id) {
-        ModelAndView model = new ModelAndView("redirect:/professores");
-        try {
-        	this.professores.excluir(id);
-            model.addObject("professores", this.professores.todos());
-            return model;
-        } catch (Exception exception) {
-            model.addObject("erro", exception.getMessage());
-            model.setViewName("professores");
-            return model;
-        }
-    }
+
+	@DeleteMapping("/{id}")
+	public ModelAndView delete(@PathVariable("id") Integer id) {
+		ModelAndView model = new ModelAndView("redirect:/professores");
+		try {
+			this.professores.excluir(id);
+			model.addObject("professores", this.professores.todos());
+			return model;
+		} catch (Exception exception) {
+			model.addObject("erro", exception.getMessage());
+			model.setViewName("professor/index");
+			return model;
+		}
+	}
 }

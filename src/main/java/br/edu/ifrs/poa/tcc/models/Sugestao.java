@@ -6,9 +6,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "sugestoes_proposta")
-public class SugestaoProjeto extends BaseEntity{
-	
+@Table(name = "sugestoes")
+public class Sugestao extends BaseEntity {
 private static final long serialVersionUID = 1L;
 	
 	@Column(nullable = false)
@@ -24,15 +23,16 @@ private static final long serialVersionUID = 1L;
 	private Professor orientador;
 	
 	
-	public SugestaoProjeto(String titulo, Boolean pesquisa, String descricao) {
+	public Sugestao(String titulo, Boolean pesquisa, String descricao, Professor orientador) {
 		super();
 		this.titulo = titulo;
 		this.pesquisa = pesquisa;
 		this.descricao = descricao;
+		this.orientador = orientador;
 	}
 	
 	
-	public SugestaoProjeto() {
+	public Sugestao() {
 		
 	}
 
@@ -60,5 +60,22 @@ private static final long serialVersionUID = 1L;
 		this.descricao = descricao;
 	}
 	
+	public Professor getOrientador() {
+        return orientador;
+    }
 
+    public void setOrientador(Professor orientador) {
+        this.orientador = orientador;
+    }
+
+	@Override
+	public String toString() {
+		return "Sugestao{" +
+				"titulo='" + titulo + '\'' +
+				", pesquisa=" + pesquisa +
+				", descricao='" + descricao + '\'' +
+				", orientador=" + orientador +
+				", id=" + id +
+				'}';
+	}
 }

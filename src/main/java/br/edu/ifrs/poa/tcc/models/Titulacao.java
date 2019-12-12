@@ -1,82 +1,62 @@
 package br.edu.ifrs.poa.tcc.models;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
-import java.util.List;
 
 @Entity
 @Table(name = "titulos")
 public class Titulacao extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-
-    @OneToMany
-    private List<Professor> professor;
-
-    protected String Graduacao;
-    protected String Especializacao;
-    protected String Mestrado;
-    protected String Doutorado;
+    protected String nomeclatura;
+    @Enumerated(EnumType.STRING)
+    protected TipoTituloEnum tipo;
+    protected String descricao;
 
     public Titulacao() {
 
     }
 
-    public Titulacao(List<Professor> professor, String graduacao, String especializacao, String mestrado, String doutorado) {
+    public Titulacao(String nomeclatura, TipoTituloEnum tipo, String descricao) {
         super();
-        this.professor = professor;
-        Graduacao = graduacao;
-        Especializacao = especializacao;
-        Mestrado = mestrado;
-        Doutorado = doutorado;
+        this.nomeclatura = nomeclatura;
+        this.tipo = tipo;
+        this.descricao = descricao;
     }
 
-    public List<Professor> getProfessor() {
-        return professor;
+    public String getNomeclatura() {
+        return nomeclatura;
     }
 
-    public void setProfessor(List<Professor> professor) {
-        this.professor = professor;
+    public void setNomeclatura(String nomeclatura) {
+        this.nomeclatura = nomeclatura;
     }
 
-    public String getGraduacao() {
-        return Graduacao;
+    public TipoTituloEnum getTipo() {
+        return tipo;
     }
 
-    public void setGraduacao(String graduacao) {
-        Graduacao = graduacao;
+    public void setTipo(TipoTituloEnum tipo) {
+        this.tipo = tipo;
     }
 
-    public String getEspecializacao() {
-        return Especializacao;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setEspecializacao(String especializacao) {
-        Especializacao = especializacao;
-    }
-
-    public String getMestrado() {
-        return Mestrado;
-    }
-
-    public void setMestrado(String mestrado) {
-        Mestrado = mestrado;
-    }
-
-    public String getDoutorado() {
-        return Doutorado;
-    }
-
-    public void setDoutorado(String doutorado) {
-        Doutorado = doutorado;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     @Override
     public String toString() {
-        return "Titulacao [professor=" + professor + ", Graduacao=" + Graduacao + ", Especializacao=" + Especializacao
-                + ", Mestrado=" + Mestrado + ", Doutorado=" + Doutorado + "]";
+        return "Titulacao{" +
+                "nomeclatura='" + nomeclatura + '\'' +
+                ", tipo=" + tipo +
+                ", descricao='" + descricao + '\'' +
+                ", id=" + id +
+                '}';
     }
-
-
 }
