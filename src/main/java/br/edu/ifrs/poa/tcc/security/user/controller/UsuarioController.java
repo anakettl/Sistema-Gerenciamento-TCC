@@ -4,6 +4,7 @@ import br.edu.ifrs.poa.tcc.models.Aluno;
 import br.edu.ifrs.poa.tcc.models.Professor;
 import br.edu.ifrs.poa.tcc.repositories.AlunoRepository;
 import br.edu.ifrs.poa.tcc.repositories.ProfessorRepository;
+import br.edu.ifrs.poa.tcc.repositories.TitulacaoRepository;
 import br.edu.ifrs.poa.tcc.security.user.*;
 import br.edu.ifrs.poa.tcc.security.user.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,9 @@ public class UsuarioController {
 
     @Autowired
     private ProfessorRepository professores;
+
+    @Autowired
+    private TitulacaoRepository titulacoes;
 
     @GetMapping(value = "/signup")
     public ModelAndView viewCadastroUsuario(CadastroDto cadastro) {
