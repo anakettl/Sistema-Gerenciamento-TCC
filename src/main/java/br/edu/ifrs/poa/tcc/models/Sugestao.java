@@ -67,6 +67,15 @@ private static final long serialVersionUID = 1L;
     public void setOrientador(Professor orientador) {
         this.orientador = orientador;
     }
-	
 
+	@Override
+	public String toString() {
+		return "Sugestao{" +
+				"titulo='" + titulo + '\'' +
+				", pesquisa=" + pesquisa +
+				", descricao='" + descricao + '\'' +
+				", orientador=" + orientador +
+				", id=" + id +
+				'}';
+	}
 }

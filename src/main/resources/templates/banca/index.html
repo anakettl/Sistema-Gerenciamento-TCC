@@ -45,6 +45,7 @@ th:replace="~{fragments/layout :: layout (~{::body},'banca')}">
 			
 			<td>
 				<a th:href="@{/bancas/__${banca.id}__}"> Ver</a>
+				<a th:href="@{/bancas/delete/__${banca.id}__}"> Excluir</a>
 			</td>
 		</tr>
 		</tbody>

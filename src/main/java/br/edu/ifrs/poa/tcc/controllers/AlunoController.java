@@ -5,6 +5,7 @@ import br.edu.ifrs.poa.tcc.service.AlunoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -80,6 +81,22 @@ public class AlunoController {
             return model;
         }
     }
+    
+    @DeleteMapping("/{id}")
+    public ModelAndView delete(@PathVariable("id") Integer id) {
+        ModelAndView model = new ModelAndView("redirect:/alunos");
+        try {
+        	this.alunos.excluir(id);
+            model.addObject("alunos", this.alunos.todos());
+            return model;
+        } catch (Exception exception) {
+            model.addObject("erro", exception.getMessage());
+            model.setViewName("alunos");
+            return model;
+        }
+    }
+
+
 
 
 }
