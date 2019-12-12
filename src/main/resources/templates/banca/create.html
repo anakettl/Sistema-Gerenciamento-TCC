@@ -16,14 +16,40 @@
 
     <input id="id" th:field="*{id}" type="hidden"/>
 
-    <label>Avaliador 01</label>
-    <input id="avaliador_1" th:field="*{avaliador1}"/>
+    <div class="form-group col-md-6">
+        <label>avaliador 01</label>
+        <label>
+            <select name="professor" class="form-control" th:field="*{orientador}" th:required="true">
+                <option th:value="null" selected>Escolha</option>
+                <option th:each="professor : ${professores}" th:value="${professor.id}"
+                        th:text="${professor.nome}"></option>
+            </select>
+        </label>
+    </div>
+    
 
-    <label>Avaliador 02</label>
-    <input id="avaliador_2" th:field="*{avaliador2}"/>
-
-    <label>Orientador</label>
-    <input id="orientador" th:field="*{orientador}"/>
+    <div class="form-group col-md-6">
+        <label>avaliador 02</label>
+        <label>
+            <select name="professor" class="form-control" th:field="*{orientador}" th:required="true">
+                <option th:value="null" selected>Escolha</option>
+                <option th:each="professor : ${professores}" th:value="${professor.id}"
+                        th:text="${professor.nome}"></option>
+            </select>
+        </label>
+    </div>
+    
+    <div class="form-group col-md-6">
+        <label>orientador</label>
+        <label>
+            <select name="professor" class="form-control" th:field="*{orientador}" th:required="true">
+                <option th:value="null" selected>Escolha</option>
+                <option th:each="professor : ${professores}" th:value="${professor.id}"
+                        th:text="${professor.nome}"></option>
+            </select>
+        </label>
+    </div>
+    
 
 
     <button type="submit">Enviar</button>
