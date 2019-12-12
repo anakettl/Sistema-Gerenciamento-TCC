@@ -39,7 +39,7 @@
 				<td><p th:text="${professor.nome}"></p></td>
 				<td><p th:text="${professor.email}"></td>
 				<td><p th:text="${professor.matricula}"></td>
-				<td><button th:href="@{/professores/__${professor.id}__}" class="btn btn-outline-success">Visualizar</button></td>
+				<td><a th:href="@{/professores/__${professor.id}__}" class="btn btn-outline-success">Visualizar</a></td>
 			</tr>
 			</tbody>
 		</table>
