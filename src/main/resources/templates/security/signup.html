@@ -56,8 +56,8 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="tipo">Tipo</label>
-                <select id="tipo" name="categoria" class="form-control" th:required="true" th:field="*{categoria}">
+                <label for="categoria">Tipo</label>
+                <select id="categoria" name="categoria" class="form-control" th:required="true" th:field="*{categoria}">
                     <option th:value="null" selected>Escolha...</option>
                     <option th:each="categoria : ${categorias}" th:value="${categoria}"
                             th:text="${categoria.descricao}"></option>

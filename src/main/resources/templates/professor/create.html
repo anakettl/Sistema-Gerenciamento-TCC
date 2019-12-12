@@ -26,10 +26,17 @@
         <input id="email" th:type="email" th:required="true" th:field="*{email}"/>
 
         <label for="cpf">CPF</label>
-        <input id="cpf" th:type="text" th:required="true" th:field="*{cpf}"/>
+        <input id="cpf" th:type="number" th:required="true" th:field="*{cpf}"/>
 
         <label for="telefone">Telefone</label>
         <input id="telefone" th:type="number" th:required="true" th:field="*{telefone}"/>
+
+        <label for="titulo">Titulacao</label>
+        <select id="titulo" name="titulo" class="form-control" th:required="true" th:field="*{titulo}">
+            <option th:value="null" selected>Escolha...</option>
+            <option th:each="tituloProfessor : ${titulacoes}" th:value="${tituloProfessor.getId()}"
+                    th:text="${tituloProfessor.descricao}"></option>
+        </select>
 
         <button th:if="${professor.id} == null" type="submit">Enviar</button>
         <button th:if="${professor.id} != null" type="submit">Atualizar</button>

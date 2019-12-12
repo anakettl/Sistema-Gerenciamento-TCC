@@ -65,7 +65,7 @@ public class SugestaoController {
 		}
 	}
 	
-	@GetMapping("{id}")
+	@GetMapping("/{id}")
 	public ModelAndView ver(@PathVariable("id") Integer id) {
 		ModelAndView model = new ModelAndView("sugestao/create");
 		try {
@@ -74,14 +74,8 @@ public class SugestaoController {
 			return model;
 		} catch (Exception exception) {
 			model.addObject("erro", exception.getMessage());
-			model.setViewName("sugestoes");
+			model.setViewName("sugestao/index");
 			return model;
 		}
 	}
-	
-	@GetMapping
-    public String SugestoesCriadas(Model model) {
-        model.addAttribute("propostasCriadas", sugestoes.pegarSugestoes());
-        return "sugestoes/index";
-    }
 }
