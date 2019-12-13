@@ -1,0 +1,35 @@
+ <!DOCTYPE html>
+
+<html lang="pt" xmlns:th="https://www.thymeleaf.org" 
+th:replace="~{fragments/layout :: layout (~{::body},'avaliacao')}">
+	<head>
+		<title>Avaliacao</title>
+		<meta charset="UTF-8">
+	</head>
+	
+  <body>
+
+    <h2>Avaliações</h2>
+    
+    <p>Veja a lista de avaliações:</p>
+    
+    <div th:if="${mensagem}"></div>
+    
+    <a type="button" th:href="@{/avaliacoes/create}">Criar</a>
+    
+
+	<table>
+		<thead>
+		<tr>
+		
+			
+		</tr>
+		</thead>
+		<tbody>
+		
+		</tbody>
+	</table>
+	
+  </body>
+
+</html>

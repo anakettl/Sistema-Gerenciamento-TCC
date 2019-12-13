@@ -1,0 +1,112 @@
+ <!DOCTYPE html>
+
+<html lang="pt" xmlns:th="https://www.thymeleaf.org" 
+th:replace="~{fragments/layout :: layout (~{::body},'avaliacoes', )}">
+	<head>
+		<title>Avaliação</title>
+	</head>
+	
+  <body>
+  
+  <div class="container-fluid">
+
+
+    <h2 th:if="${avaliacao.id} != null" >Dados do Avaliação:</h2>
+    <h2 th:if="${avaliacao.id} == null" >Nova Avaliação</h2>
+    
+    <form th:action="@{/avaliacoes/create}" th:method="post" th:object="${avaliacao}">
+    	
+    	<input type="hidden" id="id" th:field="*{id}"/>
+    	
+    	<label>Autor</label><br>
+    	<input id="autor"/><br><br>
+    	
+    	<label>Título Proposta</label><br>
+    	<input id="titulo"/><br><br>
+    	
+    	<label>Orientador</label><br>
+    	<input id="orientador"/><br><br>
+    	
+    	<table>
+			<thead>
+				<tr>
+					<th>Categoria</th>
+					<th>Critérios</th>
+					<th>Observação</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Uso da linguagem</td>
+					<td>
+						O texto está escrito com uma linguagem formal,
+						sem erros de pontuação, acentuação ou de
+						estrutura gramatical
+					</td>
+					<td><input id="linguagem"/></td>
+				</tr>
+				<tr>
+					<td>Apresentação</td>
+					<td>
+						O trabalho possui boa apresentação, inclui todos os
+						elementos necessários. A aparência em geral é
+						limpa e organizada.
+						</td>
+					<td><input id="apresentacao"/></td>
+				</tr>
+				<tr>
+					<td>Estrutura do texto</td>
+					<td>
+						O texto está bem estruturado apresentando as
+						seções com resumo, introdução, fundamentação
+						teórica, objetivos do trabalho, metodologia,
+						cronograma de trabalho e referências bibliográficas
+					</td>
+					<td><input id="estrutura_texto"/></td>
+				</tr>
+				<tr>
+					<td>Conteúdo do texto</td>
+					<td>
+						A introdução contextualiza bem o tema escolhido.
+						Os objetivos são claros. O referencial teórico está
+						bem elaborado, com referências bibliográficas
+						significativas dentro do tema proposto.
+					</td>
+					<td><input id="conteudo_texto"/></td>
+				</tr>
+				<tr>
+					<td>Relevância e adequação ao perfil de formação profissional</td>
+					<td>
+						O tema sugerido é relevante. O sistema proposto,
+						para ser desenvolvido, demanda aplicação dos
+						conteúdos trabalhados ao longo do curso. A
+						proposta está de acordo com o perfil de formação
+						profissional contido no PPC.
+					</td>
+					<td><input id="relevancia"/></td>
+				</tr>	
+			</tbody>
+		</table>
+		
+		<label>Avaliação</label><br>
+		Aprovado
+    	<input type="checkbox" id="aprovado"/>
+    	Reprovado
+    	<input type="checkbox" id="reprovado"/><br>
+    	
+    	Observação
+    	<input type="text" id="observacao"/><br><br>
+    	
+    	<button th:if="${avaliacao.id} == null" type="submit">Enviar</button>
+    	<button th:if="${avaliacao.id} != null" onclick()="atualizar">Atualizar</button>
+    	
+    	<div th:if="${#fields.hasAnyErrors()}" class="row" id="alert_box">
+           <p th:each="err : ${#fields.allErrors()}" th:text="${err}"></p>
+ 		</div>
+    	
+    </form>
+	
+  </body>
+  
+
+</html>
