@@ -8,42 +8,45 @@
 
 <body>
 
-<div class="container-fluid">
+<br class="container-fluid"/>
 
-    <h2>Propostas</h2>
+<h2 class="text-center">Propostas</h2>
 
-    <p>Veja a lista de propostas:</p>
-    <a type="button" th:href="@{/propostas/create}">Criar</a>
+<p class="text-center">Veja a lista de propostas:</p>
 
+<div th:if="${#messages}"></div>
 
-    <table>
-        <thead>
-        <tr>
-            <th>Título</th>
-            <th>Autor</th>
-            <th>Orientador</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="proposta : ${propostasCriadas}">
-            <td>
-                <p th:text="${proposta.titulo}"></p>
-            </td>
-            <td>
-                <p th:text="${proposta.autor.nome}"></p>
-            </td>
-            <td>
-                <p th:text="${proposta.orientador.nome}"></p>
-            </td>
-            <td>
-                <a th:href="@{/propostas/__${proposta.id}__}"> Ver</a>
-                <a th:href="@{/propostas/delete/__${proposta.id}__}"> Excluir</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+<div class="row-cols-3">
+    <a th:href="@{/propostas/create}" class="btn btn-primary btn-lg">Criar</a>
+</div>
 
+<br class="container-fluid"/>
 
+<table class="table table-hover table-dark">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Titulo</th>
+        <th scope="col">Autor</th>
+        <th scope="col">Orientador</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="proposta, count : ${propostasCriadas}">
+        <th scope="row" th:text="${count.count}"></th>
+        <td><p th:text="${proposta.titulo}"></p></td>
+        <td><p th:text="${proposta.autor.nome}"></td>
+        <td><p th:text="${proposta.orientador.nome}"></td>
+        <td><a th:href="@{/propostas/__${proposta.id}__}" class="btn btn-outline-success">Visualizar</a></td>
+        <td>
+            <form th:action="@{/propostas/__${proposta.id}__}" th:method="delete" />
+            <button th:type="submit" class="btn btn-outline-danger">Excluir</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
 
 </div>
 
