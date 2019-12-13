@@ -7,10 +7,7 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -63,13 +60,28 @@ public class SugestaoController {
 			return "error";
 		}
 	}
-	
+
 	@GetMapping("/{id}")
 	public ModelAndView ver(@PathVariable("id") Integer id) {
 		ModelAndView model = new ModelAndView("sugestao/create");
 		try {
 			Sugestao sugestao = this.sugestoes.sugestao(id);
 			model.addObject("sugestao", sugestao);
+			model.addObject("professores", sugestao.getOrientador());
+			return model;
+		} catch (Exception exception) {
+			model.addObject("erro", exception.getMessage());
+			model.setViewName("sugestao/index");
+			return model;
+		}
+	}
+
+	@DeleteMapping("/{id}")
+	public ModelAndView delete(@PathVariable("id") Integer id) {
+		ModelAndView model = new ModelAndView("redirect:/sugestoes");
+		try {
+			this.sugestoes.excluir(id);
+			model.addObject("alunos", this.sugestoes.todos());
 			return model;
 		} catch (Exception exception) {
 			model.addObject("erro", exception.getMessage());

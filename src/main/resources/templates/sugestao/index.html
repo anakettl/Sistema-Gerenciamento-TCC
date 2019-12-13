@@ -9,46 +9,46 @@ th:replace="~{fragments/layout :: layout (~{::body},'sugestao')}">
 	
   <body>
 
-    <h2>Sugestoes</h2>
-    
-    <p>Veja a lista de sugestoes:</p>
-    
-    <div th:if="${#messages}"></div>
-    
-    <a type="button" th:href="@{/sugestoes/create}">Criar</a>
-    
+  <br class="container-fluid"/>
 
-	<table>
-		<thead>
-		<tr>
-			<th th:id="titulo">TITULO</th>
-			<th th:id="professor">PROFESSOR</th>
-			<th th:id="pesquisa">PESQUISA IFRS</th>
-			<th th:id="descricao">DESCRIÇÃO</th>
-		</tr>
-		</thead>
-		<tbody>
-		<tr th:each="sugestao : ${sugestoes}">
-			<td>
-				<p th:text="${sugestao.titulo}"></p>
-			</td>
-			<td>
-				<p th:text="${sugestao.orientador.nome}"></p>
-			</td>
-			<td>
-				<p th:text="${sugestao.pesquisa}"></p>
-			</td>
-			<td>
-				<p th:text="${sugestao.descricao}"></p>
-			</td>
-			<td>
-				<a th:href="@{/sugestoes/__${sugestao.id}__}"> Ver</a>
-			</td>
-			
-		</tr>
-		</tbody>
-	</table>
-	
+  <h2 class="text-center">Sugestao</h2>
+
+  <p class="text-center">Veja a lista de sugestoes:</p>
+
+  <div th:if="${#messages}"></div>
+
+  <div class="row-cols-3">
+	  <a th:href="@{/sugestoes/create}" class="btn btn-primary btn-lg">Criar</a>
+  </div>
+
+  <br class="container-fluid"/>
+
+  <table class="table table-hover table-dark">
+	  <thead>
+	  <tr>
+		  <th scope="col">#</th>
+		  <th scope="col">Titulo</th>
+		  <th scope="col">Professor</th>
+		  <th scope="col">Descricao</th>
+		  <th scope="col"></th>
+	  </tr>
+	  </thead>
+	  <tbody>
+	  <tr th:each="sugestao, count : ${sugestoes}">
+		  <th scope="row" th:text="${count.count}"></th>
+		  <td><p th:text="${sugestao.titulo}"></p></td>
+		  <td><p th:text="${sugestao.orientador.nome}"></td>
+		  <td><p th:text="${sugestao.descricao}"></td>
+		  <td><a th:href="@{/sugestoes/__${sugestao.id}__}" class="btn btn-outline-success">Visualizar</a></td>
+		  <td>
+			  <form th:action="@{/sugestoes/__${sugestao.id}__}" th:method="delete" />
+			  <button th:type="submit" class="btn btn-outline-danger">Excluir</button>
+			  </form>
+		  </td>
+	  </tr>
+	  </tbody>
+  </table>
+
   </body>
 
 </html>
