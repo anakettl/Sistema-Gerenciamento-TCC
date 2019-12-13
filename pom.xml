@@ -13,9 +13,11 @@
 	<version>0.0.1</version>
 	<name>Sistema-Gerenciamento-TCC</name>
 	<description>Project for Spring Boot Web</description>
+	<packaging>jar</packaging>
 
 	<properties>
 		<java.version>1.8</java.version>
+		<start-class>br.edu.ifrs.poa.tcc.Application</start-class>
 	</properties>
 
 	<dependencies>
@@ -72,11 +74,11 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<mainClass>br.edu.ifrs.poa.tcc.Application</mainClass>
 				</configuration>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
