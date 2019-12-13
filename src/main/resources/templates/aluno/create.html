@@ -10,28 +10,40 @@ th:replace="~{fragments/layout :: layout (~{::body},'alunos')}">
 
     <h2 th:if="${aluno.id} != null" >Dados do Aluno:</h2>
     <h2 th:if="${aluno.id} == null" >Novo Aluno</h2>
-    
-    <form th:action="@{/alunos/create}" th:method="post" th:object="${aluno}">
-    	
-    	<input type="hidden" id="id" th:field="*{id}"/>
-    	
-    	<label>Matricula</label>
-    	<input id="matricula" th:type="number" th:required="true" th:field="*{matricula}"/>
-    	
-    	<label>Nome</label>
-    	<input id="nome" th:type="text" th:required="true" th:field="*{nome}"/>
-    	
-    	<label>Email</label>
-    	<input id="email" th:type="email" th:required="true" th:field="*{email}"/>
-    	
-    	<label>CPF</label>
-    	<input id="cpf" th:type="text" th:required="true" th:field="*{cpf}"/>
-    	
-    	<label>Telefone</label>
-    	<input id="telefone" th:type="number" th:required="true" th:field="*{telefone}"/>
-    	
-    	<button th:if="${aluno.id} == null" type="submit">Enviar</button>
-    	<button th:if="${aluno.id} != null" type="submit">Atualizar</button>
+
+	<form th:action="@{/alunos/create}" th:method="post" th:object="${aluno}">
+
+		<input type="hidden" id="id" th:field="*{id}"/>
+
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<label th:for="email">Email</label>
+				<input th:type="email" th:class="form-control" id="email" th:field="*{email}" th:required="true" placeholder="exemplo@gmail.com" maxlength="50">
+			</div>
+			<div class="form-group col-md-6">
+				<label for="nome">Nome</label>
+				<input th:type="text" th:class="form-control" id="nome" th:field="*{nome}" th:required="true" placeholder="Karen" maxlength="50">
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-4">
+				<label for="matricula">Matricula</label>
+				<input type="number" class="form-control" id="matricula" th:field="*{matricula}" th:required="true" placeholder="2019005500" maxlength="10">
+			</div>
+			<div class="form-group col-md-4">
+				<label for="cpf">CPF</label>
+				<input type="number" class="form-control" id="cpf" th:field="*{cpf}" th:required="true" placeholder="CPF" maxlength="11">
+			</div>
+			<div class="form-group col-md-4">
+				<label for="telefone">Telefone</label>
+				<input type="number" class="form-control" id="telefone" th:field="*{telefone}" th:required="true" placeholder="Telefone" maxlength="12">
+			</div>
+		</div>
+
+		<button th:if="${aluno.id} == null" th:type="submit" class="btn btn-primary">Enviar</button>
+		<a th:if="${aluno.id} == null" th:href="@{/alunos}" class="btn btn-danger">Cancelar</a>
+		<button th:if="${aluno.id} != null" th:type="submit" class="btn btn-primary">Atualizar</button>
+		<a th:if="${aluno.id} != null" th:href="@{/alunos}" class="btn btn-danger">Voltar</a>
 
 		<div th:if="${#fields.hasAnyErrors()}" th:each="err : ${#fields.errors()}">
 			<div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -41,8 +53,8 @@ th:replace="~{fragments/layout :: layout (~{::body},'alunos')}">
 				</button>
 			</div>
 		</div>
-    	
-    </form>
+
+	</form>
 	
   </body>
 
