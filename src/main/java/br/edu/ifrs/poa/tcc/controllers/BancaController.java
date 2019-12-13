@@ -16,21 +16,27 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.edu.ifrs.poa.tcc.models.Banca;
 import br.edu.ifrs.poa.tcc.service.BancaService;
+import br.edu.ifrs.poa.tcc.service.ProfessorService;;
+
 
 @Controller
 @RequestMapping(value = "/bancas")
 public class BancaController {
 	
 	private BancaService bancas;
+	private ProfessorService professorService;
 
-	public BancaController(BancaService bancas) {
+
+	public BancaController(BancaService bancas, ProfessorService professorService) {
 		super();
 		this.bancas = bancas;
+		this.professorService=professorService;
 	}
 	
 	@GetMapping("/create")
 	public ModelAndView viewSalvar(Banca banca) {
 		ModelAndView model = new ModelAndView("banca/create");
+		model.addObject("professores", professorService.pegarProfessores());
 		try {
 			model.addObject("banca", banca);
 			return model;
