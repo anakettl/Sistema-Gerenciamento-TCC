@@ -9,50 +9,45 @@ th:replace="~{fragments/layout :: layout (~{::body},'aluno')}">
 	
   <body>
 
-    <h2>Alunos</h2>
-    
-    <p>Veja a lista de alunos:</p>
-    
-    <div th:if="${#messages}"></div>
-    
-    <a type="button" th:href="@{/alunos/create}">Criar</a>
-    
+  <br class="container-fluid"/>
 
-	<table>
-		<thead>
-		<tr>
-			<th th:id="nome">NOME</th>
-			<th th:id="email">EMAIL</th>
-			<th th:id="matricula">MATRICULA</th>
-			<th th:id="cpf">CPF</th>
-			<th th:id="telefone">TELEFONE</th>
-		</tr>
-		</thead>
-		<tbody>
-		<tr th:each="aluno : ${alunos}">
-			<td>
-				<p th:text="${aluno.nome}"></p>
-			</td>
-			<td>
-				<p th:text="${aluno.email}"></p>
-			</td>
-			<td>
-				<p th:text="${aluno.matricula}"></p>
-			</td>
-			<td>
-				<p th:text="${aluno.cpf}"></p>
-			</td>
-			<td>
-				<p th:text="${aluno.telefone}"></p>
-			</td>
-			<td>
-				<a th:href="@{/alunos/__${aluno.id}__}"> Ver</a>
-				<a th:href="@{/alunos/delete/__${aluno.id}__}"> Excluir</a>
-			
-			</td>
-		</tr>
-		</tbody>
-	</table>
+  <h2 class="text-center">Alunos</h2>
+
+  <p class="text-center">Veja a lista de alunos:</p>
+
+  <div th:if="${#messages}"></div>
+
+  <div class="row-cols-3">
+	  <a th:href="@{/alunos/create}" class="btn btn-primary btn-lg">Criar</a>
+  </div>
+
+  <br class="container-fluid"/>
+
+  <table class="table table-hover table-dark">
+	  <thead>
+	  <tr>
+		  <th scope="col">#</th>
+		  <th scope="col">Nome</th>
+		  <th scope="col">Email</th>
+		  <th scope="col">Matricula</th>
+		  <th scope="col"></th>
+	  </tr>
+	  </thead>
+	  <tbody>
+	  <tr th:each="aluno, count : ${alunos}">
+		  <th scope="row" th:text="${count.count}"></th>
+		  <td><p th:text="${aluno.nome}"></p></td>
+		  <td><p th:text="${aluno.email}"></td>
+		  <td><p th:text="${aluno.matricula}"></td>
+		  <td><a th:href="@{/alunos/__${aluno.id}__}" class="btn btn-outline-success">Visualizar</a></td>
+		  <td>
+			  <form th:action="@{/alunos/__${aluno.id}__}" th:method="delete" />
+			  <button th:type="submit" class="btn btn-outline-danger">Excluir</button>
+			  </form>
+		  </td>
+	  </tr>
+	  </tbody>
+  </table>
 	
   </body>
 

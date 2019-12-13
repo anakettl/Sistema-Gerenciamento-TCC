@@ -36,9 +36,8 @@ th:replace="~{fragments/layout :: layout (~{::body},'sugestoes')}">
             <label>Professores</label>
 			<label>
 				<select name="professor" class="form-control" th:field="*{orientador}" th:required="true">
-					<option th:value="null" selected>Escolha</option>
-					<option th:each="professor : ${professores}" th:value="${professor.id}"
-							th:text="${professor.nome}"></option>
+					<option th:value="null" th:if="*{orientador == null}" th:selected="*{orientador == null}">Escolha</option>
+					<option th:each="professor : ${professores}" th:value="${professor.id}" th:text="${professor.nome}"></option>
 				</select>
 			</label>
 		</div>

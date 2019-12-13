@@ -19,10 +19,8 @@
 		  th:href="@{/resources/images/favicon.ico}" />
 
 	<!-- BootStrap -->
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
+	<script th:src="@{/resources/bootstrap/jquery/jquery-3.4.1.slim.js}"></script>
+	<script th:src="@{/resources/bootstrap/jquery/jquery-3.4.1.slim.min.js}"></script>
 	<link rel="stylesheet" th:href="@{/resources/bootstrap/css/bootstrap.css}">
 	<link rel="stylesheet" th:href="@{/resources/bootstrap/css/bootstrap.min.css}">
 	<link rel="stylesheet" th:href="@{/resources/bootstrap/css/bootstrap-grid.css}">
@@ -51,8 +49,8 @@
 
 	<div class="collapse navbar-collapse" id="navbarNavDropdown">
 		<ul class="navbar-nav">
-			<li class="nav-item active">
-				<a class="nav-link dropdown-toggle" th:href="@{/bancas}" id="opcoesBanca" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" th:href="@{/#}" id="opcoesBanca" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Banca
 				</a>
 				<div class="dropdown-menu" aria-labelledby="opcoesBanca">
@@ -60,7 +58,7 @@
 					<a class="dropdown-item" th:href="@{/bancas/create}">Criar</a>
 				</div>
 			</li>
-			<li class="nav-item">
+			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="opcoesProposta" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Proposta
 				</a>
@@ -69,8 +67,8 @@
 					<a class="dropdown-item" th:href="@{/propostas/create}">Criar</a>
 				</div>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link dropdown-toggle" th:href="@{/avaliacoes}" id="opcoesAvaliacao" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" th:href="@{/#}" id="opcoesAvaliacao" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Avaliacao
 				</a>
 				<div class="dropdown-menu" aria-labelledby="opcoesAvaliacao">
@@ -79,8 +77,8 @@
 				</div>
 			</li>
 			
-			<li class="nav-item">
-				<a class="nav-link dropdown-toggle" th:href="@{/sugestoes}" id="opcoesSugestao" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" th:href="@{/#}" id="opcoesSugestao" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Sugestao
 				</a>
 				<div class="dropdown-menu" aria-labelledby="opcoesAvaliacao">
@@ -89,8 +87,8 @@
 				</div>
 			</li>
 			
-			<li class="nav-item">
-				<a class="nav-link dropdown-toggle" th:href="@{/professores}" id="opcoesProfessor" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" th:href="@{/#}" id="opcoesProfessor" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Professor
 				</a>
 				<div class="dropdown-menu" aria-labelledby="opcoesProfessor">
@@ -98,8 +96,8 @@
 					<a class="dropdown-item" th:href="@{/professores/create}">Criar</a>
 				</div>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link dropdown-toggle" th:href="@{/alunos}" id="opcoesAluno" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" th:href="@{/#}" id="opcoesAluno" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Aluno
 				</a>
 				<div class="dropdown-menu" aria-labelledby="opcoesAluno">
@@ -107,9 +105,10 @@
 					<a class="dropdown-item" th:href="@{/alunos/create}">Criar</a>
 				</div>
 			</li>
+
 			</br>
 
-			<li class="nav-item">
+			<li class="nav-item right">
 				<a class="nav-link" th:href="@{/logout}">Sair</a>
 			</li>
 
@@ -120,13 +119,11 @@
 
 <div class="container">
 
-	Logged user: <span sec:authentication="name"></span>
-	Roles: <span sec:authentication="principal.authorities"></span>
-
+	<br> <br/>
 
 	<th:block th:include="${template}" />
 
-	<br /> <br />
+	<br/> <br/>
 </div>
 
 </body>

@@ -9,48 +9,48 @@ th:replace="~{fragments/layout :: layout (~{::body},'banca')}">
 	
   <body>
 
-    <h2>Bancas</h2>
-    
-    <p>Veja a lista de bancas:</p>
-    
-    <div th:if="${mensagem}"></div>
-    
-    <a type="button" th:href="@{/bancas/create}">Criar</a>
-    
+  <br class="container-fluid"/>
 
-	<table>
-		<thead>
-		<tr>
-			<th>Autor</th>
-			<th>Orientador</th>
-			<th>Avaliador 1</th>
-			<th>Avaliador 2</th>
-			
-		</tr>
-		</thead>
-		<tbody>
-		<tr th:each="banca : ${bancas}">
-			<td>
-				<p th:text="${banca.autor}"></p>
-			</td>
-			<td>
-				<p th:text="${banca.orientador}"></p>
-			</td>
-			<td>
-				<p th:text="${banca.avaliador1}"></p>
-			</td>
-			<td>
-				<p th:text="${banca.avaliador2}"></p>
-			</td>
-			
-			<td>
-				<a th:href="@{/bancas/__${banca.id}__}"> Ver</a>
-				<a th:href="@{/bancas/delete/__${banca.id}__}"> Excluir</a>
-			</td>
-		</tr>
-		</tbody>
-	</table>
-	
+  <h2 class="text-center">Banca</h2>
+
+  <p class="text-center">Veja a lista de bancas:</p>
+
+  <div th:if="${#messages}"></div>
+
+  <div class="row-cols-3">
+	  <a th:href="@{/bancas/create}" class="btn btn-primary btn-lg">Criar</a>
+  </div>
+
+  <br class="container-fluid"/>
+
+  <table class="table table-hover table-dark">
+	  <thead>
+	  <tr>
+		  <th scope="col">#</th>
+		  <th scope="col">Autor</th>
+		  <th scope="col">Orientador</th>
+		  <th scope="col">Avaliador</th>
+		  <th scope="col">Avaliador</th>
+		  <th scope="col"></th>
+	  </tr>
+	  </thead>
+	  <tbody>
+	  <tr th:each="banca, count : ${bancas}">
+		  <th scope="row" th:text="${count.count}"></th>
+		  <td><p th:text="${banca.autor}"></p></td>
+		  <td><p th:text="${banca.orientador}"></td>
+		  <td><p th:text="${banca.avaliador1}"></td>
+		  <td><p th:text="${banca.avaliador2}"></td>
+		  <td><a th:href="@{/bancas/__${banca.id}__}" class="btn btn-outline-success">Visualizar</a></td>
+		  <td>
+			  <form th:action="@{/bancas/__${banca.id}__}" th:method="delete" />
+			  <button th:type="submit" class="btn btn-outline-danger">Excluir</button>
+			  </form>
+		  </td>
+	  </tr>
+	  </tbody>
+  </table>
+
   </body>
 
 </html>
