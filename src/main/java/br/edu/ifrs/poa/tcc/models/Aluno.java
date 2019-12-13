@@ -14,7 +14,7 @@ public class Aluno extends Pessoa {
 
     @OneToOne(cascade = CascadeType.ALL)
     private Proposta proposta;
-
+    
     public Aluno() {
 
     }
@@ -34,7 +34,7 @@ public class Aluno extends Pessoa {
     public void setProposta(Proposta proposta) {
         this.proposta = proposta;
     }
-
+    
     @Override
     public String toString() {
         return "Aluno{" +
