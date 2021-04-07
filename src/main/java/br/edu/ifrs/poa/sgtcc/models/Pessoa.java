@@ -11,8 +11,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
@@ -26,16 +24,57 @@ public class Pessoa implements Serializable {
 	@NotBlank(message = "Email obrigatório")
 	@Column(length = 80, nullable = false)
 	protected String email;
-	
+
 	@NotBlank(message = "Telefone obrigatório")
 	@Column(length = 30)
 	protected String telefone;
-	
+
 	@NotBlank(message = "Matrícula obrigatória")
 	@Column(length = 80, nullable = false)
 	protected String matricula;
-	
+
 	@NotBlank(message = "CPF obrigatório")
 	@Column(length = 80, nullable = false)
 	protected String cpf;
+
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(@NotBlank(message = "Nome obrigatório") String nome) {
+		this.nome = nome;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 }

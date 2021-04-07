@@ -19,7 +19,6 @@ import lombok.ToString;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
 @Entity
 @Table(name = "TITULOS")
@@ -40,4 +39,10 @@ public class Titulacao {
     @Column(nullable = false)
     private String descricao;
 
+    public Titulacao(Integer id, String nomeclatura, TipoTituloEnum tipo, String descricao) {
+        this.id = id;
+        this.nomeclatura = nomeclatura;
+        this.tipo = tipo;
+        this.descricao = descricao;
+    }
 }
