@@ -1,0 +1,67 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.4.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'org.asciidoctor.convert' version '1.5.8'
+    id 'org.flywaydb.flyway' version '7.0.2'
+    id 'java'
+}
+
+group = 'br.edu.ifrs.poa'
+version = '0.0.1'
+sourceCompatibility = '11'
+targetCompatibility = '11'
+compileJava.options.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    set('flywayVersion', '7.0.2')
+    set('oracleVersion', '12.2.0.1')
+    set('jqueryVersion', '3.3.1')
+    set('thymeleafVersion', '3.0.11.RELEASE')
+    set('thymeleafExtrasfVersion', '2.1.2.RELEASE')
+    set('springBootVersion', '2.3.4.RELEASE')
+    set('snippetsDir', file("build/generated-snippets"))
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.webjars:jquery:' + jqueryVersion
+    implementation 'org.flywaydb:flyway-core:' + flywayVersion
+    implementation 'org.thymeleaf:thymeleaf:' + thymeleafVersion
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity4:' + thymeleafExtrasfVersion
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'com.oracle.database.jdbc:ojdbc8:' + oracleVersion
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.6.2'
+    testImplementation 'org.mockito:mockito-junit-jupiter:2.23.0'
+}
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+test {
+    outputs.dir snippetsDir
+    useJUnitPlatform()
+}
+
+asciidoctor {
+    inputs.dir snippetsDir
+    dependsOn test
+}
