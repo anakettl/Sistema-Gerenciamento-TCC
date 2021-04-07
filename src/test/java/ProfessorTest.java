@@ -20,31 +20,31 @@ public class ProfessorTest {
     }
 
     @Test
-    void registerProfessorWithoutName(){
+    void getterAndSetterNome(){
         professor.setNome("");
         assertEquals("", professor.getNome());
     }
 
     @Test
-    void registerProfessorWithoutEmail(){
+    void getterAndSetterEmail(){
         professor.setEmail("");
         assertEquals("", professor.getEmail());
     }
 
     @Test
-    void registerProfessorWithoutCpf(){
+    void getterAndSetterCpf(){
         professor.setCpf("");
         assertEquals("", professor.getCpf());
     }
 
     @Test
-    void registerProfessorWithoutTelefone(){
+    void getterAndSetterTelefone(){
         professor.setTelefone("");
         assertEquals("", professor.getTelefone());
     }
 
     @Test
-    void registerProfessorWithoutMatricula(){
+    void getterAndSetterMatricula(){
         professor.setMatricula("");
         assertEquals("", professor.getMatricula());
     }
