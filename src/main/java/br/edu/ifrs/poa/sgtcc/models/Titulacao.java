@@ -45,4 +45,36 @@ public class Titulacao {
         this.tipo = tipo;
         this.descricao = descricao;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNomeclatura() {
+        return nomeclatura;
+    }
+
+    public void setNomeclatura(String nomeclatura) {
+        this.nomeclatura = nomeclatura;
+    }
+
+    public TipoTituloEnum getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoTituloEnum tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 }

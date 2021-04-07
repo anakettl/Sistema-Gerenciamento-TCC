@@ -12,7 +12,6 @@ public class ProfessorTest {
 
     private Titulacao titulo;
     private Professor professor;
-    private ProfessorService professorService;
 
     @BeforeEach
     void Setup () {
