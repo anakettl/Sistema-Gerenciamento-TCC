@@ -19,4 +19,10 @@ public class TitulacaoTest {
         titulo.setNomeclatura("");
         assertEquals("", titulo.getNomeclatura());
     }
+
+    @Test
+    void getterAndSetterDescricao(){
+        titulo.setDescricao("");
+        assertEquals("", titulo.getDescricao());
+    }
 }
