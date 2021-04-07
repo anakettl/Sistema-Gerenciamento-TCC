@@ -10,8 +10,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
 @NoArgsConstructor
 @ToString
 @Entity
@@ -41,13 +39,54 @@ public class Professor extends Pessoa {
 					 @NotBlank(message = "Telefone obrigatório") String telefone,
 					 @NotBlank(message = "Matrícula obrigatória") String matricula,
 					 @NotBlank(message = "CPF obrigatório") String cpf,
-					 Integer id, Titulacao titulo,
+					 Integer id,
+					 Titulacao titulo,
 					 List<Sugestao> sugestoes,
 					 List<AreaInteresse> areasInteresse) {
 		super(nome, email, telefone, matricula, cpf);
 		this.id = id;
 		this.titulo = titulo;
 		this.sugestoes = sugestoes;
+		this.areasInteresse = areasInteresse;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Titulacao getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(Titulacao titulo) {
+		this.titulo = titulo;
+	}
+
+	public List<Proposta> getPropostas() {
+		return propostas;
+	}
+
+	public void setPropostas(List<Proposta> propostas) {
+		this.propostas = propostas;
+	}
+
+	public List<Sugestao> getSugestoes() {
+		return sugestoes;
+	}
+
+	public void setSugestoes(List<Sugestao> sugestoes) {
+		this.sugestoes = sugestoes;
+	}
+
+	public List<AreaInteresse> getAreasInteresse() {
+		return areasInteresse;
+	}
+
+	public void setAreasInteresse(List<AreaInteresse> areasInteresse) {
 		this.areasInteresse = areasInteresse;
 	}
 }
