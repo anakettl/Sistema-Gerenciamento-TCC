@@ -1,4 +1,5 @@
 HELP.md
+gradle
 target/
 .gradle/
 !.gradle/wrapper/gradle-wrapper.jar
